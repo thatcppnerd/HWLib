@@ -1,13 +1,13 @@
 #include "../include/disk.h"
 #include "../include/asm.h"
 
-int ata_read(chs_t location, ubyte_t n, void* addr)
+int ata_read(chs_t location, u8_t n, void* addr)
 {
-    register udword_t dx asm("%dx");
-    register ubyte_t al asm("%al");
-    register ubyte_t ah asm("%ah");
-    register uword_t ax asm("%ax");
-    register udword_t eax asm("%eax");
+    register udi16_t dx asm("%dx");
+    register u8_t al asm("%al");
+    register u8_t ah asm("%ah");
+    register u16_t ax asm("%ax");
+    register udi16_t eax asm("%eax");
 
 
 
@@ -33,7 +33,7 @@ int ata_read(chs_t location, ubyte_t n, void* addr)
     // Send low byte of cylinder index
     dx = 0x1F4;
 
-    al = (ubyte_t)location.cylinder;
+    al = (u8_t)location.cylinder;
 
     asm volatile("out %%al, %%dx\n" : : : "al", "dx");
     
@@ -57,7 +57,7 @@ int ata_read(chs_t location, ubyte_t n, void* addr)
     return 0;
 }
 
-int ata_write(chs_t location, ubyte_t n, void* addr)
+int ata_write(chs_t location, u8_t n, void* addr)
 {
 
 }

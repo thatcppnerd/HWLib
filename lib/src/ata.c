@@ -1,12 +1,12 @@
 #include "../include/hardware/ata.h"
 #include "../include/dev/asm.h"
 
-ubyte_t ata_getStatus()
+u8_t ata_getStatus()
 {
     return inb(0x1F7);
 }
 
-ubyte_t ata_getError()
+u8_t ata_getError()
 {
     return inb(0x1F1);
 }
@@ -123,7 +123,7 @@ void ATA_flushCache()
 	}while(status & 0x80); // poll until BSY clears
 }
 
-ubyte_t ATA_pio_read(ATA_drive_t drive, LBA_t lba, ubyte_t count, void* dest)
+u8_t ATA_pio_read(ATA_drive_t drive, LBA_t lba, u8_t count, void* dest)
 {
 	ata_pio_read_start:
 
@@ -142,7 +142,7 @@ ubyte_t ATA_pio_read(ATA_drive_t drive, LBA_t lba, ubyte_t count, void* dest)
 	outb(ATA_BUS0_REG_COMMAND, 0x20); // Send "READ SECTORS WITH RETRY" command
 	ATA_400ns_delay();
 
-    ubyte_t status = 0;
+    u8_t status = 0;
 	u16_t check = 0;
 
     // poll status port until DRQ == HIGH and BSY == LOW
@@ -155,7 +155,7 @@ ubyte_t ATA_pio_read(ATA_drive_t drive, LBA_t lba, ubyte_t count, void* dest)
 		{
 	 		// print error
 
-			ubyte_t error_reg = inb(0x1F1);
+			u8_t error_reg = inb(0x1F1);
 
 			return error_reg; // return status of error register
 		}
@@ -179,14 +179,14 @@ ubyte_t ATA_pio_read(ATA_drive_t drive, LBA_t lba, ubyte_t count, void* dest)
 
     for(int a = 0 ; a < 256 ; a++)
     {
-        ((uword_t*)dest)[a] = inw(0x1F0);
+        ((u16_t*)dest)[a] = inw(0x1F0);
     }
 	ATA_400ns_delay();
 
     return 0; // exit with no errors (thank fuck)
 }
 
-ubyte_t ATA_pio_write(ATA_drive_t drive, LBA_t lba, ubyte_t count, void* src)
+u8_t ATA_pio_write(ATA_drive_t drive, LBA_t lba, u8_t count, void* src)
 {
 	outb(0x1F7, 0x00); // clear command register
 	
@@ -200,7 +200,7 @@ ubyte_t ATA_pio_write(ATA_drive_t drive, LBA_t lba, ubyte_t count, void* src)
 
 	outb(ATA_BUS0_REG_COMMAND, 0x30); // Send "READ SECTORS WITH RETRY" command
 
-    ubyte_t status = 0;
+    u8_t status = 0;
 
     // poll status port until DRQ == HIGH and BSY == LOW
 	do
@@ -212,7 +212,7 @@ ubyte_t ATA_pio_write(ATA_drive_t drive, LBA_t lba, ubyte_t count, void* src)
 		{
 	 		// print error
 
-			ubyte_t error_reg = inb(0x1F1);
+			u8_t error_reg = inb(0x1F1);
 
 			return error_reg; // return status of error register
 		}
@@ -221,7 +221,7 @@ ubyte_t ATA_pio_write(ATA_drive_t drive, LBA_t lba, ubyte_t count, void* src)
 
     for(int a = 0 ; a < 256 * count ; a++)
     {
-        outw(0x1F0, ((uword_t*)src)[a]);
+        outw(0x1F0, ((u16_t*)src)[a]);
 		ATA_400ns_delay();
     }
 	ATA_400ns_delay();

@@ -1,6 +1,6 @@
 #include "../include/hash.h"
 
-hash_t dumbass_hash(ubyte_t* data, int len)
+hash_t dumbass_hash(u8_t* data, int len)
 {
     hash_t hash;
 
@@ -19,14 +19,14 @@ hash_t dumbass_hash(ubyte_t* data, int len)
         {
             for(int b = a % 4 ; b < 4 ; b++)
             {
-                ((ubyte_t*)hash)[b] += data[a];
+                ((u8_t*)hash)[b] += data[a];
             }
         }
         else
         {
             for(int b = 0 ; b < 4 - (a % 4) ; b++)
             {
-                ((ubyte_t*)hash)[b] += data[a];
+                ((u8_t*)hash)[b] += data[a];
             }
         }
         
