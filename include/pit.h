@@ -1,7 +1,7 @@
 #ifndef __PIT_H__
 #define __PIT_H__
 
-#include "../dev/types.h"
+#include "types.h"
 
 #define PIT_OSC_FREQ 1193182 // Base oscilator frequency of PIT
 
@@ -25,7 +25,7 @@
 #define PIT_CH0_DATA    0x40
 #define PIT_CH1_DATA    0x41
 #define PIT_CH2_DATA    0x42
-#define PIT_MCR         0x43 // to Mode/Command Register
+#define PIT_CMD         0x43 
 
 // typedef struct PIT_ReadBack
 // {
@@ -42,7 +42,7 @@ u16_t PIT_getCurrentCount(u8_t channel);
 
 void PIT_latchCount(u8_t channel);
 
-void PIT_writeMC(u8_t data);
+void PIT_writeCmd(u8_t data);
 
 
 #endif

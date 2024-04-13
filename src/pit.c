@@ -1,5 +1,5 @@
-#include "../include/hardware/pit.h"
-#include "../include/dev/asm.h"
+#include "../include/pit.h"
+#include "../include/asm.h"
 
 void PIT_setReloadValue(u8_t channel, u16_t val)
 {
@@ -22,8 +22,8 @@ void ALWAYSINLINE PIT_latchCount(u8_t channel)
     return;
 }
 
-inline void ALWAYSINLINE PIT_writeMCReg(u8_t data)
+inline void ALWAYSINLINE PIT_writeCmd(u8_t data)
 {
-    outb(PIT_MCR, data);
+    outb(PIT_CMD, data);
     return;
 }
