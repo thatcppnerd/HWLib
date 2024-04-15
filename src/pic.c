@@ -77,8 +77,8 @@ void PIC_Remap(u8_t base0, u8_t base1)
     u8_t m1 = PIC_GetMask(PIC1);
 
     // Send init command
-    PIC_SendCommand(PIC0, PIC_INIT | 0x01);
-    PIC_SendCommand(PIC1, PIC_INIT | 0x01);
+    PIC_SendCommand(PIC0, PIC_INIT);
+    PIC_SendCommand(PIC1, PIC_INIT);
 
     // Send vector offsets
     PIC_SendData(PIC0, m0);

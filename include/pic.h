@@ -15,8 +15,10 @@
 #define PIC1_DATA (PIC1_BASE + 1)
 
 // PIC Commands
-#define PIC_INIT 0x11 // Initialization Command
-#define PIC_EOI 0x20 // End Of Interrupt
+#define PIC_READ_IRR    0x0A // Read IRR(Interrupt Request Register)
+#define PIC_READ_ISR    0x0B // Read ISR(In-Service Register)
+#define PIC_INIT        0x11 // Initialization Command
+#define PIC_EOI         0x20 // End Of Interrupt
 
 // PIC Enums for functions
 #define PIC0 0
@@ -30,6 +32,9 @@ u8_t PIC_GetMask(int select);
 
 void PIC_SendCommand(int select, u8_t cmd);
 void PIC_SendData(int select, u8_t data);
+
+u8_t PIC_ReadIRR(int select);
+u8_t PIC_ReadISR(int select);
 
 #define PIC_SendEOI(select) PIC_SendCommand(select, PIC_EOI)
 
