@@ -116,10 +116,13 @@ void PS2_dumpRAM(void* buf);
 #define PS2_enablePort1() PS2_sendCommand(0xAE)
 u8_t PS2_readInputPort(void);
 
-// skipping commands 0xC1 and 0xC2 bc they're weird
+// skipping commands 0xC1 & 0xC2 bc they're weird
 
 u8_t PS2_readOutputPort(void);
 void PS2_writeOutputPort(u8_t val);
 
+// skipping 0xD2 - 0xD4 because i don't get them
+
+void PS2_pulseLine(u8_t mask);
 
 #endif

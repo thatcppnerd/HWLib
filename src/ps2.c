@@ -2,11 +2,13 @@
 
 u8_t PS2_readData(void)
 {
+    PS2_pollOutputBuf();
     return inb(PS2_DATA);
 }
 
 void PS2_sendData(u8_t data)
 {
+    PS2_pollInputBuf();
     outb(PS2_DATA, data);
 }
 
@@ -47,14 +49,12 @@ void PS2_sendCommand(u8_t cmd)
 u8_t PS2_readRAM(u8_t i)
 {
     PS2_sendCommand(0x20 + i);
-    PS2_pollOutputBuf(); // wait for data
     return PS2_readData();
 }
 
 void PS2_writeRAM(u8_t i, u8_t data)
 {
     PS2_sendCommand(0x60 + i);
-    PS2_pollInputBuf(); // wait for input buf empty
     PS2_sendData(data);
 }
 
@@ -62,21 +62,18 @@ void PS2_writeRAM(u8_t i, u8_t data)
 int PS2_testPort2(void)
 {
     PS2_sendCommand(0xA9);
-    PS2_pollOutputBuf();
     return PS2_readData();
 }
 
 int PS2_testController(void)
 {
     PS2_sendCommand(0xAA);
-    PS2_pollOutputBuf();
     return PS2_readData();
 }
 
 int PS2_testPort1(void)
 {
     PS2_sendCommand(0xAB);
-    PS2_pollOutputBuf();
     return PS2_readData();
 }
 
@@ -87,7 +84,6 @@ void PS2_dumpRAM(void* buf)
     // read all 32 bytes
     for(int a = 0 ; a < 0x20 ; a++)
     {
-        PS2_pollOutputBuf();
         *buf++ = PS2_readData(); 
     }
 }
@@ -95,15 +91,23 @@ void PS2_dumpRAM(void* buf)
 u8_t PS2_readInputPort(void)
 {
     PS2_sendCommand(0xC0);
-    PS2_pollOutputBuf();
     return PS2_readData();
 }
 
 u8_t PS2_readOutputPort(void)
 {
     PS2_sendCommand(0xD0);
-    PS2_pollOutputBuf();
     return PS2_readData();
 }
 
-void PS2_write
+void PS2_writeOutputPort(u8_t val)
+{
+    PS2_sendCommand(0xD1);
+    PS2_sendData(val);
+}
+
+void PS2_pulseLine(u8_t mask)
+{
+    mask &= 0x0F; // only keep low 4 bits
+    PS2_sendCommand(0xF0 | mask);
+}
