@@ -3,6 +3,6 @@
 
 #include "asm.h"
 
-#define io_wait() inb(0x80)
+#define io_wait() outb(0x80, 0)
 
 #endif
