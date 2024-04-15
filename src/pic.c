@@ -77,11 +77,20 @@ void PIC_Remap(u8_t base0, u8_t base1)
     u8_t m1 = PIC_GetMask(PIC1);
 
     // Send init command
-    PIC_SendCommand(PIC0, PIC_INIT);
-    io_wait();
-    PIC_SendCommand(PIC1, PIC_INIT);
-    io_wait();
+    PIC_SendCommand(PIC0, PIC_INIT | 0x01);
+    PIC_SendCommand(PIC1, PIC_INIT | 0x01);
 
+    // Send vector offsets
+    PIC_SendData(PIC0, m0);
+    PIC_SendData(PIC1, m1);
 
-    // Send n
+    // Send cascade info
+    PIC_SendData(PIC0, 4);
+    PIC_SendData(PIC1, 2);
+
+    // Send ICW4
+    PIC_SendData(PIC0, 0x01);
+    PIC_SendData(PIC1, 0x01);
+
+    PIC_SetMasks(m0, m1);
 }
