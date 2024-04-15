@@ -7,12 +7,15 @@ inline void PIC_SetMask(int select, u8_t mask)
     if(select == PIC0) outb(PIC0_DATA, mask);
     else if(select == PIC1) outb(PIC1_DATA, mask);
     else return;
+    io_wait();
 }
 
 inline void PIC_SetMasks(u8_t mask0, u8_t mask1)
 {
     outb(PIC0_DATA, mask0);
+    io_wait();
     outb(PIC1_DATA, mask1);
+    io_wait();
 }
 
 inline u8_t PIC_GetMask(int select)
@@ -20,6 +23,7 @@ inline u8_t PIC_GetMask(int select)
     if(select == PIC0) return inb(PIC0_DATA);
     else if(select == PIC1) return inb(PIC1_DATA);
     else return 0;
+    io_wait();
 }
 
 void PIC_SendCommand(int select, u8_t cmd)
@@ -50,7 +54,21 @@ void PIC_Init(int select, u8_t icw1, u8_t icw2, u8_t icw3, u8_t icw4)
         PIC_SendData(PIC0, icw2);
         PIC_SendData(PIC0, icw3);
         PIC_SendData(PIC0, icw4);
+
+        PIC_SetMask(PIC0, mask);
     }
+    else if(select == PIC1)
+    {
+        mask = PIC_GetMask(PIC1);
+
+        PIC_SendCommand(PIC1, icw1);
+        PIC_SendData(PIC1, icw2);
+        PIC_SendData(PIC1, icw3);
+        PIC_SendData(PIC1, icw4);
+
+        PIC_SetMask(PIC1, mask);
+    }
+    else return;
 }
 
 void PIC_Remap(u8_t base0, u8_t base1)
