@@ -44,6 +44,17 @@ void PS2_sendCommand(u8_t cmd)
 }
 
 
+u8_t PS2_getOutput(void)
+{
+    return inb(PS2_OUTPUT_READ);
+}
+
+void PS2_setOutput(u8_t val) 
+{
+    outb(PS2_OUTPUT_WRITE, val);
+}
+
+
 u8_t PS2_readRAM(u8_t i)
 {
     PS2_sendCommand(0x20 + i);
@@ -56,4 +67,34 @@ void PS2_writeRAM(u8_t i, u8_t data)
     PS2_sendCommand(0x60 + i);
     while(!(PS2_getStatus() & 0x02)); // wait for input buf opening
     PS2_sendData(data);
+}
+
+
+int PS2_testPort2(void)
+{
+    PS2_sendCommand(0xA9);
+    while(PS2_getStatus() & 0x01);
+    return PS2_readData();
+}
+
+int PS2_testController(void)
+{
+    PS2_sendCommand(0xAA);
+    while(PS2_getStatus() & 0x01);
+    return PS2_readData();
+}
+
+int PS2_testPort1(void)
+{
+    PS2_sendCommand(0xAB);
+    while(PS2_getStatus() & 0x01);
+    return PS2_readData();
+}
+
+int PS2_dumpRAM(void* buf)
+{
+    PS2_sendCommand(0xAC);
+
+    // read all 32 bytes
+    for(int a = 0 ; a < 0x20 ; )
 }

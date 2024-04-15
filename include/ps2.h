@@ -14,26 +14,6 @@
 #define PS2_OUTPUT_READ 0xD0            // PS/2 Output Port (Read port)
 #define PS2_OUTPUT_WRITE 0xD1           // PS/2 Output Port (Write port)
 
-// Commands for PS/2 Controller's command register
-
-#define PS2_CMD_READ_CCB 0x20
-#define PS2_CMD_WRITE_CCB 0x60
-#define PS2_CMD_DISABLE_PORT2 0xA7
-#define PS2_CMD_ENABLE_PORT2 0xA8
-#define PS2_CMD_TEST_PORT2 0xA9
-#define PS2_CMD_TEST_CTLR 0xAA
-#define PS2_CMD_TEST_PORT1 0xAB
-#define PS2_CMD_DUMP_RAM 0xAC
-#define PS2_CMD_DISABLE_PORT1 0xAD
-#define PS2_CMD_ENABLE_PORT1 0xAE
-#define PS2_CMD_READ_INPUT 0xC0
-#define PS2_CMD_CPY_IN_TO_STATUS_LN 0xC1 // Copy low nibble of input port to low nibble status
-#define PS2_CMD_CPY_IN_TO_STATUS_HN 0xC2 // Copy high nibble of input port to high nibble status
-#define PS2_CMD_READ_OUTPUT 0xD0
-#define PS2_CMD_WRITE_OUTPUT 0xD1
-#define PS2_CMD_WRITE_PORT1_OUT_BUF 0xD2
-#define PS2_CMD_WRITE_PORT2_OUT_BUF 0xD3
-#define PS2_CMD_WRITE_PORT2_IN_BUF 0xD4
 
 // Types for data structures in PS/2 Controller
 
@@ -54,15 +34,28 @@ typedef struct PS2_Status
 typedef struct PS2_ConfigByte
 {
     u8_t
-        port1_int_enable : 1,
-        port2_int_enable : 1,
-        sys_flag : 1,
-        zero1 : 1, 
-        port1_clk_disable : 1,
-        port2_clk_disable : 1,
-        port1_port_translation : 1,
-        zero2 : 1;
+        port1_int : 1,
+        port2_int : 1,
+        system : 1,
+        : 1, 
+        port1_clk : 1,
+        port2_clk : 1,
+        port1_trans : 1,
+        : 1;
 } PS2_ConfigByte_t;
+
+typedef struct PS2_Output
+{
+    u8_t
+        sys_reset : 1,
+        a20 : 1,
+        port2_clk : 1,
+        port2_data : 1,
+        port1_full : 1,
+        port2_full : 1,
+        port1_clk : 1,
+        port1_data : 1 
+} PS2_Output_t;
 
 // Enums
 
@@ -71,14 +64,8 @@ enum PS2_CtlA_Flags
 {
     PS2_CTLA_RESET =            0x01, // CPU Reset  
     PS2_CTLA_A20 =              0x02, // A20 Gate 
-    
-    // bit 2 is reserved
-
     PS2_CTLA_LOCK =             0x08, // Security Lock
     PS2_CTLA_WATCHDOG_TIMER =   0x10, // Watchdog Timer Status
-    
-    // bit 5 is reserved
-
     PS2_CTLA_HDD2 =             0x40, // HDD 2 Drive Activity
     PS2_CTLA_HDD1 =             0x80  // HDD 1 Drive Activity
 };
@@ -112,11 +99,23 @@ u8_t PS2_getStatus();
 void PS2_sendCommand(u8_t cmd);
 
 u8_t PS2_getOutput(void);
+void PS2_setOutput(u8_t val);
+
+// PS2 Commands
 
 u8_t PS2_readRAM(u8_t i);
 void PS2_writeRAM(u8_t i, u8_t data);
 #define PS2_getCtlConfigByte() PS2_readRAM(0)
 #define PS2_setCtlConfigByte(data) PS2_writeRAM(0, data)
+
+#define PS2_disablePort2() PS2_sendCommand(0xA7)
+#define PS2_enablePort2() PS2_sendCommand(0xA8)
+int PS2_testPort2(void);
+int PS2_testController(void);
+int PS2_testPort1(void);
+
+void PS2_dumpRAM(void* buf);
+
 
 
 
