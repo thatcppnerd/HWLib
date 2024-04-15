@@ -1,5 +1,5 @@
 #include "../include/pic.h"
-
+#include "../include/util.h"
 
 
 inline void PIC_SetMask(int select, u8_t mask)
@@ -22,17 +22,48 @@ inline u8_t PIC_GetMask(int select)
     else return 0;
 }
 
+void PIC_SendCommand(int select, u8_t cmd)
+{
+    if(select == PIC0) outb(PIC0_CMD, cmd);
+    else if(select == PIC1) outb(PIC1_CMD, cmd);
+    else return;
+    io_wait();
+}
+
+void PIC_SendData(int select, u8_t data)
+{
+    if(select == PIC0) outb(PIC0_DATA, data);
+    else if(select == PIC1) outb(PIC1_DATA, data);
+    else return;
+    io_wait();
+}
+
+void PIC_Init(int select, u8_t icw1, u8_t icw2, u8_t icw3, u8_t icw4)
+{
+    u8_t mask = 0x00;
+
+    if(select == PIC0)
+    {
+        mask = PIC_GetMask(PIC0);
+
+        PIC_SendCommand(PIC0, icw1);
+        PIC_SendData(PIC0, icw2);
+        PIC_SendData(PIC0, icw3);
+        PIC_SendData(PIC0, icw4);
+    }
+}
+
 void PIC_Remap(u8_t base0, u8_t base1)
 {
     u8_t m0 = PIC_GetMask(PIC0);
     u8_t m1 = PIC_GetMask(PIC1);
 
     // Send init command
-    outb(PIC0_CMD, PIC_INIT);
-    outb(0x80, 0); // IO_WAIT(), you'll see lots of these
+    PIC_SendCommand(PIC0, PIC_INIT);
+    io_wait();
+    PIC_SendCommand(PIC1, PIC_INIT);
+    io_wait();
 
-    outb(PIC1_CMD, PIC_INIT);
-    outb(0x80, 0);
 
     // Send n
 }

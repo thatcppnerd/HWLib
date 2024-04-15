@@ -22,10 +22,18 @@
 #define PIC0 0
 #define PIC1 1
 
+// PIC Functions
+
 void PIC_SetMask(int select, u8_t mask);
 void PIC_SetMasks(u8_t mask0, u8_t mask1);
 u8_t PIC_GetMask(int select);
 
-// void PIC_Remap(u8_t base0, u8_t base1); // WIPWIPWIP
+void PIC_SendCommand(int select, u8_t cmd);
+void PIC_SendData(int select, u8_t data);
+
+void PIC_Init(int select, u8_t icw1, u8_t icw2, u8_t icw3, u8_t icw4);
+void PIC_InitAll(u8_t icw1, u8_t icw2, u8_t icw3, u8_t icw4);
+
+void PIC_Remap(u8_t base0, u8_t base1);
 
 #endif
