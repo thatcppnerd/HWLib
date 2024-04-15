@@ -6,11 +6,13 @@
 
 // Ports for PS/2 Controller
 
-#define PS2_DATA 0x60
-#define PS2_CTL_A 0x92
-#define PS2_CTL_B 0x61
-#define PS2_STATUS 0x64
-#define PS2_CMD 0x64
+#define PS2_DATA 0x60                   // PS/2 Data Port
+#define PS2_CTLA 0x92                   // PS/2 System Control Port A
+#define PS2_CTLB 0x61                   // PS/2 System Control Port B
+#define PS2_STATUS 0x64                 // PS/2 Status Port
+#define PS2_CMD 0x64                    // PS/2 Command Port
+#define PS2_OUTPUT_READ 0xD0            // PS/2 Output Port (Read port)
+#define PS2_OUTPUT_WRITE 0xD1           // PS/2 Output Port (Write port)
 
 // Commands for PS/2 Controller's command register
 
@@ -49,7 +51,7 @@ typedef struct PS2_Status
 } PS2_Status_t;
 
 // Wrapper for CCB(Controller Config Byte)
-typedef union PS2_ConfigByte
+typedef struct PS2_ConfigByte
 {
     u8_t
         port1_int_enable : 1,
@@ -60,11 +62,45 @@ typedef union PS2_ConfigByte
         port2_clk_disable : 1,
         port1_port_translation : 1,
         zero2 : 1;
-    
-    u8_t byte;
 } PS2_ConfigByte_t;
 
+// Enums
+
+// System Control Port A 
+enum PS2_CtlA_Flags
+{
+    PS2_CTLA_RESET =            0x01, // CPU Reset  
+    PS2_CTLA_A20 =              0x02, // A20 Gate 
+    
+    // bit 2 is reserved
+
+    PS2_CTLA_LOCK =             0x08, // Security Lock
+    PS2_CTLA_WATCHDOG_TIMER =   0x10, // Watchdog Timer Status
+    
+    // bit 5 is reserved
+
+    PS2_CTLA_HDD2 =             0x40, // HDD 2 Drive Activity
+    PS2_CTLA_HDD1 =             0x80  // HDD 1 Drive Activity
+};
+
+// System Control Port B
+enum PS2_CtlB_Flags
+{
+    PS2_CTLB_SPKR_GATE =    0x01, // PIT Ch.2 speaker input enabled
+    PS2_CTLB_SPKR_DATA =    0x02, // Speaker Data Enable
+    PS2_CTLB_PARITY_CHECK = 0x04, // Parity Data Enable
+    PS2_CTLB_CH_CHECK =     0x08, // Chammel Check Enable
+    PS2_CTLB_REFRESH =      0x10, // Refresh Request
+    PS2_CTLB_TIMER2 =       0x20, // Timer 2 Output
+    PS2_CTLB_CHANNEL =      0x40, // Channel Check 
+    PS2_CTLB_PARITY =       0x80  // Parity Check
+};
+
+
 // Functions
+
+u8_t PS2_readData(void);
+void PS2_sendData(u8_t data);
 
 u8_t PS2_getCtlA(void);
 void PS2_setCtlA(u8_t val);
@@ -73,33 +109,15 @@ u8_t PS2_getCtlB(void);
 void PS2_setCtlB(u8_t val);
 
 u8_t PS2_getStatus();
-void PS2_sendCmd(u8_t cmd);
+void PS2_sendCommand(u8_t cmd);
 
-u8_t PS2_readByte(u8_t n);
-void PS2_writeByte(u8_t n, u8_t val);
-void PS2_togglePort(u8_t port, u8_t toggle);
+u8_t PS2_getOutput(void);
 
-void PS2_enablePort1();
-void PS2_disablePort1();
-void PS2_enablePort2();
-void PS2_disablePort2();
+u8_t PS2_readRAM(u8_t i);
+void PS2_writeRAM(u8_t i, u8_t data);
+#define PS2_getCtlConfigByte() PS2_readRAM(0)
+#define PS2_setCtlConfigByte(data) PS2_writeRAM(0, data)
 
-void PS2_testPort(u8_t port);
-void PS2_testController();
-void PS2_writeOutputBuffer();
 
-// Enums
-enum PS2_CtlA_Flags
-{
-    PS2_CTLA_
-};
-
-enum PS2_CtlB_Flags
-{
-    PS2_CTLB_SPKR_GATE =    0x01,
-    PS2_CTLB_SPKR_DATA =    0x02,
-    PS2_CTLB_PARITY_CHECK = 0x04,
-    PS2_CTLB_CH_CHECK =     0x08
-};
 
 #endif
