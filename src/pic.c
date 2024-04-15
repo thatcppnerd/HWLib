@@ -36,8 +36,3 @@ void PIC_Remap(u8_t base0, u8_t base1)
 
     // Send n
 }
-
-// void PIC_Init()
-// {
-
-// }
