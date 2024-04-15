@@ -6,11 +6,11 @@
 
 // Ports for PS/2 Controller
 
-#define PS2_PORT_DATA 0x60
-#define PS2_PORT_CTL_A 0x92
-#define PS2_PORT_CTL_B 0x61
-#define PS2_PORT_STATUS 0x64
-#define PS2_PORT_CMD 0x64
+#define PS2_DATA 0x60
+#define PS2_CTL_A 0x92
+#define PS2_CTL_B 0x61
+#define PS2_STATUS 0x64
+#define PS2_CMD 0x64
 
 // Commands for PS/2 Controller's command register
 
