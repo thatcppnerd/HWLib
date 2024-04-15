@@ -84,7 +84,7 @@ void PS2_dumpRAM(void* buf)
     // read all 32 bytes
     for(int a = 0 ; a < 0x20 ; a++)
     {
-        *buf++ = PS2_readData(); 
+        *(u8_t*)buf++ = PS2_readData(); 
     }
 }
 
