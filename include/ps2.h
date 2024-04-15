@@ -11,8 +11,6 @@
 #define PS2_CTLB 0x61                   // PS/2 System Control Port B
 #define PS2_STATUS 0x64                 // PS/2 Status Port
 #define PS2_CMD 0x64                    // PS/2 Command Port
-#define PS2_OUTPUT_READ 0xD0            // PS/2 Output Port (Read port)
-#define PS2_OUTPUT_WRITE 0xD1           // PS/2 Output Port (Write port)
 
 
 // Types for data structures in PS/2 Controller
@@ -86,6 +84,9 @@ enum PS2_CtlB_Flags
 
 // Functions
 
+#define PS2_pollInputBuf() while(PS2_getStatus() & 0x02)
+#define PS2_pollOutputBuf() while(PS2_getStatus() ^ 0x01)
+
 u8_t PS2_readData(void);
 void PS2_sendData(u8_t data);
 
@@ -97,9 +98,6 @@ void PS2_setCtlB(u8_t val);
 
 u8_t PS2_getStatus();
 void PS2_sendCommand(u8_t cmd);
-
-u8_t PS2_getOutput(void);
-void PS2_setOutput(u8_t val);
 
 // PS2 Commands
 
@@ -113,10 +111,15 @@ void PS2_writeRAM(u8_t i, u8_t data);
 int PS2_testPort2(void);
 int PS2_testController(void);
 int PS2_testPort1(void);
-
 void PS2_dumpRAM(void* buf);
+#define PS2_disablePort1() PS2_sendCommand(0xAD)
+#define PS2_enablePort1() PS2_sendCommand(0xAE)
+u8_t PS2_readInputPort(void);
 
+// skipping commands 0xC1 and 0xC2 bc they're weird
 
+u8_t PS2_readOutputPort(void);
+void PS2_writeOutputPort(u8_t val);
 
 
 #endif
