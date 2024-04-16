@@ -2,6 +2,7 @@
 #define __DMA_H__
 
 #include "types.h"
+#include "asm.h"
 
 // Macros for channel select
 
@@ -26,7 +27,8 @@ enum DMA_
 
 
 
-void DMA_SetStartAddress(int channel, u16_t addr);
+void DMA_SetStartAddress(unsigned int channel, u16_t addr);
+void DMA_SetCount(unsigned int channe)
 u8_t DMA_GetStatus(void);
 void DMA_SendCommand(u8_t cmd);
 void DMA_SendRequest(u8_t cmd);
