@@ -6,11 +6,11 @@
 
 // Ports for PS/2 Controller
 
-#define PS2_DATA 0x60                   // PS/2 Data Port
-#define PS2_CTLA 0x92                   // PS/2 System Control Port A
-#define PS2_CTLB 0x61                   // PS/2 System Control Port B
-#define PS2_STATUS 0x64                 // PS/2 Status Port
-#define PS2_CMD 0x64                    // PS/2 Command Port
+#define PS2_DATA    0x60        // PS/2 Data Port
+#define PS2_CTLA    0x92        // PS/2 System Control Port A
+#define PS2_CTLB    0x61        // PS/2 System Control Port B
+#define PS2_STATUS  0x64        // PS/2 Status Port
+#define PS2_CMD     0x64        // PS/2 Command Port
 
 
 // Types for data structures in PS/2 Controller
@@ -30,24 +30,24 @@ enum PS2_Status
 // Wrapper for CCB(Controller Config Byte)
 enum PS2_CCB_Flags
 {
-    PS2_CCB_PORT1_INT =     0x01,
-    PS2_CCB_PORT2_INT =     0x02,
-    PS2_CCB_SYSTEM =        0x04,
-    PS2_CCB_PORT1_CLK =     0x10,
-    PS2_CCB_PORT2_CLK =     0x20,
-    PS2_CCB_PORT1_TRANS =   0x40
+    PS2_CCB_PORT1_INT =         0x01,
+    PS2_CCB_PORT2_INT =         0x02,
+    PS2_CCB_SYSTEM =            0x04,
+    PS2_CCB_PORT1_CLK =         0x10,
+    PS2_CCB_PORT2_CLK =         0x20,
+    PS2_CCB_PORT1_TRANS =       0x40
 } PS2_ConfigByte_t;
 
 enum PS2_Output_Flags
 {
-    PS2_OUTPUT_SYS_RESET =  0x01,
-    PS2_OUTPUT_A20 =        0x02,
-    PS2_OUTPUT_PORT2_CLK =  0x04,
-    PS2_OUTPUT_PORT2_DATA = 0x08,
-    PS2_OUTPUT_PORT1_CLK =  0x10,
-    PS2_OUTPUT_PORT2_FULL = 0x20,
-    PS2_OUTPUT_PORT1_CLK =  0x40,
-    PS2_OUTPUT_PORT1_DATA = 0x80
+    PS2_OUTPUT_SYS_RESET =      0x01,
+    PS2_OUTPUT_A20 =            0x02,
+    PS2_OUTPUT_PORT2_CLK =      0x04,
+    PS2_OUTPUT_PORT2_DATA =     0x08,
+    PS2_OUTPUT_PORT1_CLK =      0x10,
+    PS2_OUTPUT_PORT2_FULL =     0x20,
+    PS2_OUTPUT_PORT1_CLK =      0x40,
+    PS2_OUTPUT_PORT1_DATA =     0x80
 };
 
 // Enums
@@ -66,14 +66,14 @@ enum PS2_CtlA_Flags
 // System Control Port B
 enum PS2_CtlB_Flags
 {
-    PS2_CTLB_SPKR_GATE =    0x01, // PIT Ch.2 speaker input enabled
-    PS2_CTLB_SPKR_DATA =    0x02, // Speaker Data Enable
-    PS2_CTLB_PARITY_CHECK = 0x04, // Parity Data Enable
-    PS2_CTLB_CH_CHECK =     0x08, // Chammel Check Enable
-    PS2_CTLB_REFRESH =      0x10, // Refresh Request
-    PS2_CTLB_TIMER2 =       0x20, // Timer 2 Output
-    PS2_CTLB_CHANNEL =      0x40, // Channel Check 
-    PS2_CTLB_PARITY =       0x80  // Parity Check
+    PS2_CTLB_SPKR_GATE =        0x01, // PIT Ch.2 speaker input enabled
+    PS2_CTLB_SPKR_DATA =        0x02, // Speaker Data Enable
+    PS2_CTLB_PARITY_CHECK =     0x04, // Parity Data Enable
+    PS2_CTLB_CH_CHECK =         0x08, // Chammel Check Enable
+    PS2_CTLB_REFRESH =          0x10, // Refresh Request
+    PS2_CTLB_TIMER2 =           0x20, // Timer 2 Output
+    PS2_CTLB_CHANNEL =          0x40, // Channel Check 
+    PS2_CTLB_PARITY =           0x80  // Parity Check
 };
 
 
