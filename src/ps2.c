@@ -1,113 +1,113 @@
 #include "../include/ps2.h"
 
-u8_t PS2_readData(void)
+u8_t PS2_ReadData(void)
 {
-    PS2_pollOutputBuf();
+    PS2_PollOutputBuf();
     return inb(PS2_DATA);
 }
 
-void PS2_sendData(u8_t data)
+void PS2_SendData(u8_t data)
 {
-    PS2_pollInputBuf();
+    PS2_PollInputBuf();
     outb(PS2_DATA, data);
 }
 
 
-u8_t PS2_getCtlA(void)
+u8_t PS2_GetCtlA(void)
 {
     return inb(PS2_CTLA);
 }
 
-void PS2_setCtlA(u8_t val)
+void PS2_SetCtlA(u8_t val)
 {
     outb(PS2_CTLA, val);
 }
 
 
-u8_t PS2_getCtlB(void)
+u8_t PS2_GetCtlB(void)
 {
     return inb(PS2_CTLB);
 }
 
-void PS2_setCtlB(u8_t val)
+void PS2_SetCtlB(u8_t val)
 {
     outb(PS2_CTLB, val);
 }
 
 
-u8_t PS2_getStatus()
+u8_t PS2_GetStatus()
 {
     return inb(PS2_STATUS);
 }
 
-void PS2_sendCommand(u8_t cmd)
+void PS2_SendCommand(u8_t cmd)
 {
     PS2_pollInputBuf(); // wait for an empty input buffer
     outb(PS2_CMD, cmd); // send command
 }
 
-u8_t PS2_readRAM(u8_t i)
+u8_t PS2_ReadRAM(u8_t i)
 {
-    PS2_sendCommand(0x20 + i);
-    return PS2_readData();
+    PS2_SendCommand(0x20 + i);
+    return PS2_ReadData();
 }
 
-void PS2_writeRAM(u8_t i, u8_t data)
+void PS2_WriteRAM(u8_t i, u8_t data)
 {
-    PS2_sendCommand(0x60 + i);
+    PS2_SendCommand(0x60 + i);
     PS2_sendData(data);
 }
 
 
-int PS2_testPort2(void)
+int PS2_TestPort2(void)
 {
-    PS2_sendCommand(0xA9);
-    return PS2_readData();
+    PS2_SendCommand(0xA9);
+    return PS2_ReadData();
 }
 
-int PS2_testController(void)
+int PS2_TestController(void)
 {
-    PS2_sendCommand(0xAA);
-    return PS2_readData();
+    PS2_SendCommand(0xAA);
+    return PS2_ReadData();
 }
 
-int PS2_testPort1(void)
+int PS2_TestPort1(void)
 {
-    PS2_sendCommand(0xAB);
-    return PS2_readData();
+    PS2_SendCommand(0xAB);
+    return PS2_ReadData();
 }
 
-void PS2_dumpRAM(void* buf)
+void PS2_DumpRAM(void* buf)
 {
-    PS2_sendCommand(0xAC);
+    PS2_SendCommand(0xAC);
 
     // read all 32 bytes
     for(int a = 0 ; a < 0x20 ; a++)
     {
-        *(u8_t*)buf++ = PS2_readData(); 
+        *(u8_t*)buf++ = PS2_ReadData(); 
     }
 }
 
-u8_t PS2_readInputPort(void)
+u8_t PS2_ReadInputPort(void)
 {
-    PS2_sendCommand(0xC0);
-    return PS2_readData();
+    PS2_SendCommand(0xC0);
+    return PS2_ReadData();
 }
 
-u8_t PS2_readOutputPort(void)
+u8_t PS2_ReadOutputPort(void)
 {
-    PS2_sendCommand(0xD0);
-    return PS2_readData();
+    PS2_SendCommand(0xD0);
+    return PS2_ReadData();
 }
 
-void PS2_writeOutputPort(u8_t val)
+void PS2_WriteOutputPort(u8_t val)
 {
-    PS2_sendCommand(0xD1);
+    PS2_SendCommand(0xD1);
     PS2_sendData(val);
 }
 
-void PS2_pulseLine(u8_t mask)
+void PS2_PulseLine(u8_t mask)
 {
     mask &= 0x0F; // only keep low 4 bits
-    PS2_sendCommand(0xF0 | mask);
+    PS2_SendCommand(0xF0 | mask);
 }

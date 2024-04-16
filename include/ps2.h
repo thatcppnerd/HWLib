@@ -79,45 +79,45 @@ enum PS2_CtlB_Flags
 
 // Functions
 
-#define PS2_pollInputBuf() while(PS2_getStatus() & 0x02)
-#define PS2_pollOutputBuf() while(PS2_getStatus() ^ 0x01)
+#define PS2_PollInputBuf() while(PS2_GetStatus() & 0x02)
+#define PS2_PollOutputBuf() while(PS2_GetStatus() ^ 0x01)
 
-u8_t PS2_readData(void);
-void PS2_sendData(u8_t data);
+u8_t PS2_ReadData(void);
+void PS2_SendData(u8_t data);
 
-u8_t PS2_getCtlA(void);
-void PS2_setCtlA(u8_t val);
+u8_t PS2_GetCtlA(void);
+void PS2_SetCtlA(u8_t val);
 
-u8_t PS2_getCtlB(void);
-void PS2_setCtlB(u8_t val);
+u8_t PS2_GetCtlB(void);
+void PS2_SetCtlB(u8_t val);
 
-u8_t PS2_getStatus();
-void PS2_sendCommand(u8_t cmd);
+u8_t PS2_GetStatus();
+void PS2_SendCommand(u8_t cmd);
 
 // PS2 Commands
 
-u8_t PS2_readRAM(u8_t i);
-void PS2_writeRAM(u8_t i, u8_t data);
-#define PS2_getCtlConfigByte() PS2_readRAM(0)
-#define PS2_setCtlConfigByte(data) PS2_writeRAM(0, data)
+u8_t PS2_ReadRAM(u8_t i);
+void PS2_WriteRAM(u8_t i, u8_t data);
+#define PS2_GetCtlConfigByte() PS2_ReadRAM(0)
+#define PS2_SetCtlConfigByte(data) PS2_WriteRAM(0, data)
 
-#define PS2_disablePort2() PS2_sendCommand(0xA7)
-#define PS2_enablePort2() PS2_sendCommand(0xA8)
-int PS2_testPort2(void);
-int PS2_testController(void);
-int PS2_testPort1(void);
-void PS2_dumpRAM(void* buf);
-#define PS2_disablePort1() PS2_sendCommand(0xAD)
-#define PS2_enablePort1() PS2_sendCommand(0xAE)
-u8_t PS2_readInputPort(void);
+#define PS2_DisablePort2() PS2_SendCommand(0xA7)
+#define PS2_EnablePort2() PS2_SendCommand(0xA8)
+int PS2_TestPort2(void);
+int PS2_TestController(void);
+int PS2_TestPort1(void);
+void PS2_DumpRAM(void* buf);
+#define PS2_DisablePort1() PS2_SendCommand(0xAD)
+#define PS2_EnablePort1() PS2_SendCommand(0xAE)
+u8_t PS2_ReadInputPort(void);
 
 // skipping commands 0xC1 & 0xC2 bc they're weird
 
-u8_t PS2_readOutputPort(void);
-void PS2_writeOutputPort(u8_t val);
+u8_t PS2_ReadOutputPort(void);
+void PS2_WriteOutputPort(u8_t val);
 
 // skipping 0xD2 - 0xD4 because i don't get them
 
-void PS2_pulseLine(u8_t mask);
+void PS2_PulseLine(u8_t mask);
 
 #endif

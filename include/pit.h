@@ -37,12 +37,12 @@
 //         outputPin : 1;
 // } PIT_ReadBack_t;
 
-void PIT_setReloadValue(u8_t channel, u16_t val);
-u16_t PIT_getCurrentCount(u8_t channel);
+void PIT_SetReloadValue(u8_t channel, u16_t val);
+u16_t PIT_GetCurrentCount(u8_t channel);
 
-void PIT_latchCount(u8_t channel);
+void PIT_LatchCount(u8_t channel);
 
-void PIT_writeCmd(u8_t data);
+void PIT_SendCommand(u8_t data);
 
 
 #endif
