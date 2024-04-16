@@ -15,45 +15,40 @@
 
 // Types for data structures in PS/2 Controller
 
-typedef struct PS2_Status
+enum PS2_Status
 {
-    u8_t 
-        out_buf : 1,
-        in_buf : 1,
-        sys : 1,
-        cmd_data : 1,
-        u1 : 1,
-        u2 : 1,
-        timeout : 1,
-        parity : 1;
-} PS2_Status_t;
+    PS2_STATUS_OUT_BUF =        0x01,
+    PS2_STATUS_IN_BUF =         0x02,
+    PS2_STATUS_SYS =            0x04,
+    PS2_STATUS_INPUT_TYPE =     0x08,
+    PS2_STATUS_U1 =             0x10,
+    PS2_STATUS_U2 =             0x20,
+    PS2_STATUS_TIMEOUT =        0x40,
+    PS2_STATUS_PARITY =         0x80,
+};
 
 // Wrapper for CCB(Controller Config Byte)
-typedef struct PS2_ConfigByte
+enum PS2_CCB_Flags
 {
-    u8_t
-        port1_int : 1,
-        port2_int : 1,
-        system : 1,
-        : 1, 
-        port1_clk : 1,
-        port2_clk : 1,
-        port1_trans : 1,
-        : 1;
+    PS2_CCB_PORT1_INT =     0x01,
+    PS2_CCB_PORT2_INT =     0x02,
+    PS2_CCB_SYSTEM =        0x04,
+    PS2_CCB_PORT1_CLK =     0x10,
+    PS2_CCB_PORT2_CLK =     0x20,
+    PS2_CCB_PORT1_TRANS =   0x40
 } PS2_ConfigByte_t;
 
-typedef struct PS2_Output
+enum PS2_Output_Flags
 {
-    u8_t
-        sys_reset : 1,
-        a20 : 1,
-        port2_clk : 1,
-        port2_data : 1,
-        port1_full : 1,
-        port2_full : 1,
-        port1_clk : 1,
-        port1_data : 1 
-} PS2_Output_t;
+    PS2_OUTPUT_SYS_RESET =  0x01,
+    PS2_OUTPUT_A20 =        0x02,
+    PS2_OUTPUT_PORT2_CLK =  0x04,
+    PS2_OUTPUT_PORT2_DATA = 0x08,
+    PS2_OUTPUT_PORT1_CLK =  0x10,
+    PS2_OUTPUT_PORT2_FULL = 0x20,
+    PS2_OUTPUT_PORT1_CLK =  0x40,
+    PS2_OUTPUT_PORT1_DATA = 0x80
+};
 
 // Enums
 
