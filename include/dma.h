@@ -36,14 +36,14 @@ enum DMA_
 void DMA_SetStartAddress(int channel, u16_t addr);
 void DMA_SetCount(int channel);
 u8_t DMA_GetStatus(int select);
-void DMA_SendCommand(u8_t cmd);
-void DMA_SendRequest(u8_t cmd);
-void DMA_SetMask(u8_t mask);
-void DMA_SetMode(u8_t mode);
-void DMA_FlipFlopReset(void);
-u8_t DMA_GetIntermediate(void);
-void DMA_MasterReset(void);
-void DMA_MaskReset(void);
+void DMA_SendCommand(int select, u8_t cmd);
+void DMA_SendRequest(int select, u8_t req);
+void DMA_SetMask(int select, u8_t mask);
+void DMA_SetMode(int select, u8_t mode);
+void DMA_FlipFlopReset(int select);
+u8_t DMA_GetIntermediate(int select);
+void DMA_MasterReset(int select);
+void DMA_MaskReset(int select);
 
 u8_t DMA_GetMultiChannelMask(void);
 void DMA_SetMultiChannelMas(u8_t mask);
