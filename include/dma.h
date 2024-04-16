@@ -45,8 +45,8 @@ u8_t DMA_GetIntermediate(int select);
 void DMA_MasterReset(int select);
 void DMA_MaskReset(int select);
 
-u8_t DMA_GetMultiChannelMask(void);
-void DMA_SetMultiChannelMas(u8_t mask);
+u8_t DMA_GetMultiChannelMask(int select);
+void DMA_SetMultiChannelMask(int select, u8_t mask);
 
 void DMA_SetPageAddress(int channel, u8_t data);
 

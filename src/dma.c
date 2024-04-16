@@ -151,4 +151,33 @@ void DMA_MaskReset(int select)
     else return;
 }
 
-void DMA_GetMultiChannelMask()
+void DMA_GetMultiChannelMask(int select)
+{
+    if(select == DMA0)
+    {
+        inb(DMA0_BASE + 0x1E);
+    }
+    else if(select == DMA1)
+    {
+        inb(DMA1_BASE + 0x0F);
+    }
+    else return;
+}
+
+void DMA_SetMultiChannelMask(int select, u8_t mask)
+{
+    if(select == DMA0)
+    {
+        outb(DMA0_BASE + 0x1E, mask);
+    }
+    else if(select == DMA1)
+    {
+        outb(DMA1_BASE + 0x0F, mask);
+    }
+    else return;
+}
+
+void DMA_SetPageAddress(int channel, u8_t data)
+{
+    if()
+}
