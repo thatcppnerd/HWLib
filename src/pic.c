@@ -42,6 +42,56 @@ void PIC_SendData(int select, u8_t data)
     io_wait();
 }
 
+u8_t PIC_ReadCommand(int select)
+{
+    if(select == PIC0) inb(PIC0_CMD);
+    else if(select == PIC1) inb(PIC1_CMD);
+    else return;
+    io_wait();
+}
+
+u8_t PIC_ReadData(int select)
+{
+    if(select == PIC0) inb(PIC0_DATA);
+    else if(select == PIC1) inb(PIC1_DATA);
+    else return;
+    io_wait();
+}
+
+u8_t PIC_ReadIRR(int select)
+{
+    if(select == PIC0)
+    {
+        outb(PIC0_CMD, PIC_READ_IRR);
+        io_wait();
+        return inb(PIC0_CMD);
+    }
+    else if(select == PIC1)
+    {
+        outb(PIC1_CMD, PIC_READ_IRR);
+        io_wait();
+        return inb(PIC1_CMD);
+    }
+    else return;
+}
+
+u8_t PIC_ReadISR(int select)
+{
+    if(select == PIC0)
+    {
+        outb(PIC0_CMD, PIC_READ_ISR);
+        io_wait();
+        return inb(PIC0_CMD);
+    }
+    else if(select == PIC1)
+    {
+        outb(PIC1_CMD, PIC_READ_ISR);
+        io_wait();
+        return inb(PIC1_CMD);
+    }
+    else return;
+}
+
 void PIC_Init(int select, u8_t icw1, u8_t icw2, u8_t icw3, u8_t icw4)
 {
     u8_t mask = 0x00;

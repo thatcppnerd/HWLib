@@ -33,6 +33,9 @@ u8_t PIC_GetMask(int select);
 void PIC_SendCommand(int select, u8_t cmd);
 void PIC_SendData(int select, u8_t data);
 
+u8_t PIC_ReadCommand(int select);
+u8_t PIC_ReadData(int select);
+
 u8_t PIC_ReadIRR(int select);
 u8_t PIC_ReadISR(int select);
 
