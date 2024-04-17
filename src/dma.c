@@ -17,7 +17,7 @@ void DMA_SetStartAddress(int channel, u16_t addr)
     else return;
 }
 
-void DMA_SetCount(int channel, u16_t addr)
+void DMA_SetCount(int channel, u16_t count)
 {
     if(channel < DMA_CH4) // on slave DMA
     {
@@ -73,15 +73,15 @@ void DMA_SendRequest(int select, u8_t req)
     else return;
 }
 
-void DMA_SetMask(int select, u8_t mask)
+void DMA_SetSingleChannelMask(int select, u8_t channel)
 {
     if(select == DMA0)
     {
-        outb(DMA0_BASE + 0x14, mask);
+        outb(DMA0_BASE + 0x14, channel);
     }
     else if(select == DMA1)
     {
-        outb(DMA1_BASE + 0x0A, mask);
+        outb(DMA1_BASE + 0x0A, channel);
     }
     else return;
 }

@@ -1,5 +1,5 @@
-#ifndef __SIZES_H__
-#define __SIZES_H__
+#ifndef __TYPES_H__
+#define __TYPES_H__
 
 
 // basic size types
@@ -25,7 +25,15 @@ typedef unsigned int        uint_t;
 typedef signed long         i64_t;
 typedef unsigned long       u64_t;
 
-typedef signed long         
+typedef signed long         slong_t;
+typedef unsigned long       ulong_t;
 #endif
+
+
+// Function Attributes 
+
+#define NORETURN __attribute__((noreturn))
+#define ALWAYSINLINE __attribute__((always_inline))
+#define PACKED __attribute__((packed))
 
 #endif

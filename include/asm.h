@@ -2,7 +2,6 @@
 #define __ASM_H__
 
 #include "types.h"
-#include "dev.h"
 
 #define mov(dest, src)  
 

@@ -29,16 +29,19 @@
 
 // Register flag enums
 
-enum DMA_
+enum DMA_MASK_Flags
+{
+    DMA_MASK_SEL0 = 0x01
+};
 
 
 
 void DMA_SetStartAddress(int channel, u16_t addr);
-void DMA_SetCount(int channel);
+void DMA_SetCount(int channel, u16_t count);
 u8_t DMA_GetStatus(int select);
 void DMA_SendCommand(int select, u8_t cmd);
 void DMA_SendRequest(int select, u8_t req);
-void DMA_SetMask(int select, u8_t mask);
+void DMA_SetSingleChannelMask(int select, u8_t channel);
 void DMA_SetMode(int select, u8_t mode);
 void DMA_FlipFlopReset(int select);
 u8_t DMA_GetIntermediate(int select);
