@@ -27,6 +27,18 @@
 #define DMA0_BASE   0xC0 
 #define DMA1_BASE   0x00
 
+enum DMA_STATUS_Flags
+{
+    DMA_STATUS_TC0 =        0x01,
+    DMA_STATUS_TC1 =        0x02,
+    DMA_STATUS_TC2 =        0x04,
+    DMA_STATUS_TC3 =        0x08,
+    DMA_STATUS_REQ0 =       0x10,
+    DMA_STATUS_REQ1 =       0x20,
+    DMA_STATUS_REQ2 =       0x40,
+    DMA_STATUS_REQ3 =       0x80
+};
+
 // for Single Channel Mask
 enum DMA_SCMASK_Flags
 {
