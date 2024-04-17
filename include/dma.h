@@ -27,13 +27,13 @@
 #define DMA0_BASE   0xC0 
 #define DMA1_BASE   0x00
 
-// Register flag enums
-
-enum DMA_MASK_Flags
+// for Single Channel Mask
+enum DMA_SCMASK_Flags
 {
-    DMA_MASK_SEL0 = 0x01
+    DMA_SCMASK_SEL0 =       0x01,
+    DMA_SCMASK_SEL1 =       0x02,
+    DMA_SCMASK_MASK_ON =    0x04
 };
-
 
 
 void DMA_SetStartAddress(int channel, u16_t addr);
