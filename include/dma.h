@@ -16,6 +16,7 @@
 #define DMA_CH6 6
 #define DMA_CH7 7
 
+
 // Macros for chip select
 
 #define DMA0 0
@@ -38,6 +39,20 @@ enum DMA_STATUS_Flags
     DMA_STATUS_REQ2 =       0x40,
     DMA_STATUS_REQ3 =       0x80
 };
+
+enum DMA_CMD_Flags
+{
+    DMA_CMD_MMT =       0x01,
+    DMA_CMD_ADME =      0x02,
+    DMA_CMD_COND =      0x04,
+    DMA_CMD_COMP =      0x08,
+    DMA_CMD_PRIO =      0x10,
+    DMA_CMD_EXTW =      0x20,
+    DMA_CMD_DRQP =      0x40,
+    DMA_CMD_DACKP =     0x80
+};
+
+
 
 // for Single Channel Mask
 enum DMA_SCMASK_Flags
