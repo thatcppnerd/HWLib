@@ -28,6 +28,7 @@
 #define DMA0_BASE   0xC0 
 #define DMA1_BASE   0x00
 
+
 enum DMA_STATUS_Flags
 {
     DMA_STATUS_TC0 =        0x01,
@@ -52,14 +53,24 @@ enum DMA_CMD_Flags
     DMA_CMD_DACKP =     0x80
 };
 
-
-
 // for Single Channel Mask
 enum DMA_SCMASK_Flags
 {
     DMA_SCMASK_SEL0 =       0x01,
     DMA_SCMASK_SEL1 =       0x02,
     DMA_SCMASK_MASK_ON =    0x04
+};
+
+enum DMA_MODE_Flags
+(
+    DMA_MODE_SEL0 =     0x01,
+    DMA_MODE_SEL1 =     0x02,
+    DMA_MODE_TRA0 =     0x04,
+    DMA_MODE_TRA1 =     0x08,
+    DMA_MODE_AUTO =     0x10,
+    DMA_MODE_DOWN =     0x20,
+    DMA_MODE_MOD0 =     0x40,
+    DMA_MODE_MOD1 =     0x80
 };
 
 
