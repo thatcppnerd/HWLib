@@ -82,7 +82,7 @@ void DMA_SetRequestReg(int select, u8_t val);
 void DMA_SetSingleChannelMaskReg(int select, u8_t channel);
 void DMA_SetModeReg(int select, u8_t mode);
 void DMA_FlipFlopReset(int select);
-u8_t DMA_GetIntermediate(int select);
+u8_t DMA_GetIntermediateReg(int select);
 void DMA_MasterReset(int select);
 void DMA_MaskReset(int select);
 
