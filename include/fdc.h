@@ -14,4 +14,8 @@
 int FDC_ReadSectorsCHS(u8_t cyl, u8_t head, u8_t sector, u32_t count, void* dest);
 int FDC_ReadSectorsLBA(LBA_t lba, u32_t count, void* dest);
 
+int FDC_WriteSectorsCHS(u8_t cyl, u8_t head, u8_t sector, u32_t count, void* src);
+int FDC_WriteSectorsLBA(LBA_t lba, u32_t count, void* sec);
+
+
 #endif
