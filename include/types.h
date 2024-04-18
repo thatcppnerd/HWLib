@@ -29,6 +29,9 @@ typedef signed long         slong_t;
 typedef unsigned long       ulong_t;
 #endif
 
+// Disk I/O Types
+
+typedef u32_t LBA_t; 
 
 // Function Attributes 
 
