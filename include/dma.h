@@ -73,6 +73,14 @@ enum DMA_MODE_Flags
     DMA_MODE_MOD1 =     0x80
 };
 
+// for Multi Channel Mask
+enum DMA_MCMASK_Flags
+{
+    DMA_MCMASK_MASK0 =  0x01,
+    DMA_MCMASK_MASK1 =  0x02,
+    DMA_MCMASK_MASK2 =  0x04,
+    DMA_MCMASK_MASK3 =  0x08
+};
 
 void DMA_SetStartAddressReg(int channel, u16_t addr);
 void DMA_SetCountReg(int channel, u16_t count);

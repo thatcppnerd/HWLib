@@ -1,6 +1,6 @@
 #include "../include/dma.h"
 
-void DMA_SetStartAddress(int channel, u16_t addr)
+void DMA_SetStartAddressReg(int channel, u16_t addr)
 {
     if(channel < DMA_CH4) // on slave DMA
     {
@@ -17,12 +17,12 @@ void DMA_SetStartAddress(int channel, u16_t addr)
     else return;
 }
 
-void DMA_SetCount(int channel, u16_t count)
+void DMA_SetCountReg(int channel, u16_t count)
 {
     if(channel < DMA_CH4) // on slave DMA
     {
-        outb((DMA0_BASE + 1) + channel * 2, addr & 0xFF); // low byte
-        outb((DMA0_BASE + 1) + channel * 2, (addr >> 8) & 0xFF); // high byte
+        outb((DMA0_BASE + 1) + channel * 2, count & 0xFF); // low byte
+        outb((DMA0_BASE + 1) + channel * 2, (count >> 8) & 0xFF); // high byte
         io_wait();
     }
     else if(channel >= DMA_CH4) // on master DMA
@@ -34,7 +34,7 @@ void DMA_SetCount(int channel, u16_t count)
     else return;
 }
 
-u8_t DMA_GetStatus(int select)
+u8_t DMA_GetStatusReg(int select)
 {
     if(select == DMA0)
     {
@@ -47,33 +47,33 @@ u8_t DMA_GetStatus(int select)
     else return;
 }
 
-void DMA_SendCommand(int select, u8_t cmd)
+void DMA_SetCommandReg(int select, u8_t val)
 {
     if(select == DMA0)
     {
-        outb(DMA0_BASE + 0x10, cmd);
+        outb(DMA0_BASE + 0x10, val);
     }
     else if(select == DMA1)
     {
-        outb(DMA1_BASE + 8, cmd);
+        outb(DMA1_BASE + 8, val);
     }
     else return;
 }
 
-void DMA_SendRequest(int select, u8_t req)
+void DMA_SetRequestReg(int select, u8_t val)
 {
     if(select == DMA0)
     {
-        outb(DMA0_BASE + 0x12, req);
+        outb(DMA0_BASE + 0x12, val);
     }
     else if(select == DMA1)
     {
-        outb(DMA1_BASE + 9, req);
+        outb(DMA1_BASE + 9, val);
     }
     else return;
 }
 
-void DMA_SetSingleChannelMask(int select, u8_t channel)
+void DMA_SetSingleChannelMaskReg(int select, u8_t channel)
 {
     if(select == DMA0)
     {
@@ -86,7 +86,7 @@ void DMA_SetSingleChannelMask(int select, u8_t channel)
     else return;
 }
 
-void DMA_SetMode(int select, u8_t mode)
+void DMA_SetModeReg(int select, u8_t mode)
 {
     if(select == DMA0)
     {
@@ -151,15 +151,15 @@ void DMA_MaskReset(int select)
     else return;
 }
 
-void DMA_GetMultiChannelMask(int select)
+u8_t DMA_GetMultiChannelMask(int select)
 {
     if(select == DMA0)
     {
-        inb(DMA0_BASE + 0x1E);
+        return inb(DMA0_BASE + 0x1E);
     }
     else if(select == DMA1)
     {
-        inb(DMA1_BASE + 0x0F);
+        return inb(DMA1_BASE + 0x0F);
     }
     else return;
 }
