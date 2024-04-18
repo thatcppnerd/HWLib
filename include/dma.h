@@ -62,7 +62,7 @@ enum DMA_SCMASK_Flags
 };
 
 enum DMA_MODE_Flags
-(
+{
     DMA_MODE_SEL0 =     0x01,
     DMA_MODE_SEL1 =     0x02,
     DMA_MODE_TRA0 =     0x04,
