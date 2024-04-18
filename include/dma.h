@@ -16,6 +16,7 @@
 #define DMA_CH6 6
 #define DMA_CH7 7
 
+
 // Macros for chip select
 
 #define DMA0 0
@@ -27,24 +28,61 @@
 #define DMA0_BASE   0xC0 
 #define DMA1_BASE   0x00
 
-// Register flag enums
 
-enum DMA_MASK_Flags
+enum DMA_STATUS_Flags
 {
-    DMA_MASK_SEL0 = 0x01
+    DMA_STATUS_TC0 =        0x01,
+    DMA_STATUS_TC1 =        0x02,
+    DMA_STATUS_TC2 =        0x04,
+    DMA_STATUS_TC3 =        0x08,
+    DMA_STATUS_REQ0 =       0x10,
+    DMA_STATUS_REQ1 =       0x20,
+    DMA_STATUS_REQ2 =       0x40,
+    DMA_STATUS_REQ3 =       0x80
+};
+
+enum DMA_CMD_Flags
+{
+    DMA_CMD_MMT =       0x01,
+    DMA_CMD_ADME =      0x02,
+    DMA_CMD_COND =      0x04,
+    DMA_CMD_COMP =      0x08,
+    DMA_CMD_PRIO =      0x10,
+    DMA_CMD_EXTW =      0x20,
+    DMA_CMD_DRQP =      0x40,
+    DMA_CMD_DACKP =     0x80
+};
+
+// for Single Channel Mask
+enum DMA_SCMASK_Flags
+{
+    DMA_SCMASK_SEL0 =       0x01,
+    DMA_SCMASK_SEL1 =       0x02,
+    DMA_SCMASK_MASK_ON =    0x04
+};
+
+enum DMA_MODE_Flags
+(
+    DMA_MODE_SEL0 =     0x01,
+    DMA_MODE_SEL1 =     0x02,
+    DMA_MODE_TRA0 =     0x04,
+    DMA_MODE_TRA1 =     0x08,
+    DMA_MODE_AUTO =     0x10,
+    DMA_MODE_DOWN =     0x20,
+    DMA_MODE_MOD0 =     0x40,
+    DMA_MODE_MOD1 =     0x80
 };
 
 
-
-void DMA_SetStartAddress(int channel, u16_t addr);
-void DMA_SetCount(int channel, u16_t count);
-u8_t DMA_GetStatus(int select);
-void DMA_SendCommand(int select, u8_t cmd);
-void DMA_SendRequest(int select, u8_t req);
-void DMA_SetSingleChannelMask(int select, u8_t channel);
-void DMA_SetMode(int select, u8_t mode);
+void DMA_SetStartAddressReg(int channel, u16_t addr);
+void DMA_SetCountReg(int channel, u16_t count);
+u8_t DMA_GetStatusReg(int select);
+void DMA_SetCommandReg(int select, u8_t val);
+void DMA_SetRequestReg(int select, u8_t val);
+void DMA_SetSingleChannelMaskReg(int select, u8_t channel);
+void DMA_SetModeReg(int select, u8_t mode);
 void DMA_FlipFlopReset(int select);
-u8_t DMA_GetIntermediate(int select);
+u8_t DMA_GetIntermediateReg(int select);
 void DMA_MasterReset(int select);
 void DMA_MaskReset(int select);
 
