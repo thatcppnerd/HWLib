@@ -11,11 +11,13 @@
 #define FDC_HPD     2   // Heads Per Disk
 
 
-int FDC_ReadSectorsCHS(u8_t cyl, u8_t head, u8_t sector, u32_t count, void* dest);
-int FDC_ReadSectorsLBA(LBA_t lba, u32_t count, void* dest);
+int FDC_ReadSectorsPIO(u8_t cyl, u8_t head, u8_t sector, u32_t count, void* dest);
+int FDC_WriteSectorsPIO(u8_t cyl, u8_t head, u8_t sector, u32_t count, void* src);
 
-int FDC_WriteSectorsCHS(u8_t cyl, u8_t head, u8_t sector, u32_t count, void* src);
-int FDC_WriteSectorsLBA(LBA_t lba, u32_t count, void* sec);
+int FDC_ReadSectorsDMA(u8_t cyl, u8_t head, u8_t sector, u32_t count, void* dest);
+int FDC_WriteSectorsDMA(u8_t cyl, u8_t head, u8_t sector, u32_t count, void* src);
 
+int FDC_Reset(
+int FDC_
 
 #endif
