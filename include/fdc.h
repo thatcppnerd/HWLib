@@ -10,7 +10,6 @@
 #define FDC_TPH     80  // Tracks Per Head
 #define FDC_HPD     2   // Heads Per Disk
 
-// Ports
 enum FDC_Ports
 {
     // for FDC0
@@ -19,8 +18,9 @@ enum FDC_Ports
     FDC0_STATUS_B =          0x3F1,
     FDC0_DIGITAL_OUTPUT =    0x3F2,
     FDC0_TAPE_DRV =          0x3F3,
-    FDC0_MAIN_STATUS =       0x3F4.
-    FDC0_DATARATE_SELECT =   0x3F5,
+    FDC0_MAIN_STATUS =       0x3F4,
+    FDC0_DATARATE_SELECT =   0x3F4,
+    FDC0_FIFO =              0x3F5,
     FDC0_DIGITAL_INPUT =     0x3F7,
     FDC0_CONFIG_CTL =        0x3F7,
 
@@ -31,10 +31,13 @@ enum FDC_Ports
     FDC1_DIGITAL_OUTPUT =    0x3F2,
     FDC1_TAPE_DRV =          0x3F3,
     FDC1_MAIN_STATUS =       0x3F4,
-    FDC1_DATARATE_SELECT =   0x3F5,
+    FDC1_DATARATE_SELECT =   0x3F4,
+    FDC1_FIFO =              0x3F5,
     FDC1_DIGITAL_INPUT =     0x3F7,
     FDC1_CONFIG_CTL =        0x3F7
 };
+
+enum
 
 int FDC_ReadSectorsPIO(u8_t cyl, u8_t head, u8_t sector, u32_t count, void* dest);
 int FDC_WriteSectorsPIO(u8_t cyl, u8_t head, u8_t sector, u32_t count, void* src);
