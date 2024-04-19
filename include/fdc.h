@@ -38,7 +38,7 @@ enum FDC_Ports
     FDC1_CONFIG_CTL =       0x3F7
 };
 
-// for Digital Output
+// for Digital Output Register(DOR)
 enum FDC_DOR_Flags
 {
     FDC_DOR_SEL0 =      0x01,
@@ -51,6 +51,7 @@ enum FDC_DOR_Flags
     FDC_DOR_MOTD =      0x80
 };
 
+// for Master Status Register(MSR)
 enum FDC_MSR_Flags
 {
     FDC_MSR_ACTA =      0x01,
