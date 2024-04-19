@@ -181,15 +181,15 @@ void DMA_SetPageAddressReg(int channel, u8_t addr)
 {
     switch(channel)
     {
-        case DMA0: outb(0x87, addr); break;
-        case DMA1: outb(0x83, addr); break;
-        case DMA2: outb(0x81, addr); break;
-        case DMA3: outb(0x82, addr); break;
+        case DMA_CH0: outb(0x87, addr); break;
+        case DMA_CH1: outb(0x83, addr); break;
+        case DMA_CH2: outb(0x81, addr); break;
+        case DMA_CH3: outb(0x82, addr); break;
         
-        case DMA4: outb(0x8F, addr); break;
-        case DMA5: outb(0x8B, addr); break;
-        case DMA6: outb(0x89, addr); break;
-        case DMA7: outb(0x8A, addr); break;
+        case DMA_CH4: outb(0x8F, addr); break;
+        case DMA_CH5: outb(0x8B, addr); break;
+        case DMA_CH6: outb(0x89, addr); break;
+        case DMA_CH7: outb(0x8A, addr); break;
         
         default: return;
     }
@@ -199,15 +199,15 @@ u8_t DMA_GetPageAddressReg(int channel)
 {
     switch(channel)
     {
-        case DMA0: return inb(0x87); break;
-        case DMA1: return inb(0x83); break;
-        case DMA2: return inb(0x81); break;
-        case DMA3: return inb(0x82); break;
+        case DMA_CH0: return inb(0x87); break;
+        case DMA_CH1: return inb(0x83); break;
+        case DMA_CH2: return inb(0x81); break;
+        case DMA_CH3: return inb(0x82); break;
         
-        case DMA4: return inb(0x8F); break;
-        case DMA5: return inb(0x8B); break;
-        case DMA6: return inb(0x89); break;
-        case DMA7: return inb(0x8A); break;
+        case DMA_CH4: return inb(0x8F); break;
+        case DMA_CH5: return inb(0x8B); break;
+        case DMA_CH6: return inb(0x89); break;
+        case DMA_CH7: return inb(0x8A); break;
         
         default: return 0;
     }

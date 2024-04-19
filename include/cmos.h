@@ -1,6 +1,10 @@
 #ifndef __CMOS_H__
 #define __CMOS_H__
 
+#include "types.h"
+#include "util.h"
+#include "asm.h"
+
 // CMOS Ports
 
 #define CMOS_INDEX  0x70
