@@ -18,7 +18,7 @@ u16_t PIT_GetCurrentCount(u8_t channel)
 
 void ALWAYSINLINE PIT_LatchCount(u8_t channel)
 {
-    PIT_writeMCReg(channel << 6); // send "latch count" command to MC
+    PIT_SendCommand(channel << 6); // send "latch count" command to MC
     return;
 }
 

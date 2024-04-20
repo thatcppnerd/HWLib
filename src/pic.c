@@ -2,7 +2,7 @@
 #include "../include/util.h"
 
 
-inline void PIC_SetMask(int select, u8_t mask)
+void PIC_SetMask(int select, u8_t mask)
 {
     if(select == PIC0) outb(PIC0_DATA, mask);
     else if(select == PIC1) outb(PIC1_DATA, mask);
@@ -10,7 +10,7 @@ inline void PIC_SetMask(int select, u8_t mask)
     io_wait();
 }
 
-inline void PIC_SetMasks(u8_t mask0, u8_t mask1)
+void PIC_SetMasks(u8_t mask0, u8_t mask1)
 {
     outb(PIC0_DATA, mask0);
     io_wait();
@@ -18,11 +18,11 @@ inline void PIC_SetMasks(u8_t mask0, u8_t mask1)
     io_wait();
 }
 
-inline u8_t PIC_GetMask(int select)
+u8_t PIC_GetMask(int select)
 {
     if(select == PIC0) return inb(PIC0_DATA);
     else if(select == PIC1) return inb(PIC1_DATA);
-    else return 0;
+    else return 0xFF;
     io_wait();
 }
 
@@ -46,7 +46,7 @@ u8_t PIC_ReadCommand(int select)
 {
     if(select == PIC0) inb(PIC0_CMD);
     else if(select == PIC1) inb(PIC1_CMD);
-    else return;
+    else return 0xFF;
     io_wait();
 }
 
@@ -54,7 +54,7 @@ u8_t PIC_ReadData(int select)
 {
     if(select == PIC0) inb(PIC0_DATA);
     else if(select == PIC1) inb(PIC1_DATA);
-    else return;
+    else return 0xFF;
     io_wait();
 }
 
@@ -72,7 +72,7 @@ u8_t PIC_ReadIRR(int select)
         io_wait();
         return inb(PIC1_CMD);
     }
-    else return;
+    else return 0xFF;
 }
 
 u8_t PIC_ReadISR(int select)
@@ -89,7 +89,7 @@ u8_t PIC_ReadISR(int select)
         io_wait();
         return inb(PIC1_CMD);
     }
-    else return;
+    else return 0xFF;
 }
 
 void PIC_Init(int select, u8_t icw1, u8_t icw2, u8_t icw3, u8_t icw4)

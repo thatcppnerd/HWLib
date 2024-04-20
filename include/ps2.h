@@ -44,7 +44,7 @@ enum PS2_Output_Flags
     PS2_OUTPUT_A20 =            0x02,
     PS2_OUTPUT_PORT2_CLK =      0x04,
     PS2_OUTPUT_PORT2_DATA =     0x08,
-    PS2_OUTPUT_PORT1_CLK =      0x10,
+    PS2_OUTPUT_PORT1_FULL =     0x10,
     PS2_OUTPUT_PORT2_FULL =     0x20,
     PS2_OUTPUT_PORT1_CLK =      0x40,
     PS2_OUTPUT_PORT1_DATA =     0x80

@@ -27,8 +27,8 @@ void DMA_SetCountReg(int channel, u16_t count)
     }
     else if(channel >= DMA_CH4) // on master DMA
     {
-        outb((DMA1_BASE + 2) + (channel - 4) * 4, addr & 0xFF); // low byte
-        outb((DMA1_BASE + 2) + (channel - 4) * 4, (addr >> 8) & 0xFF); // high byte
+        outb((DMA1_BASE + 2) + (channel - 4) * 4, count & 0xFF); // low byte
+        outb((DMA1_BASE + 2) + (channel - 4) * 4, (count >> 8) & 0xFF); // high byte
         io_wait();
     }
     else return;
@@ -44,7 +44,7 @@ u8_t DMA_GetStatusReg(int select)
     {
         return inb(DMA1_BASE + 8);
     }
-    else return;
+    else return 0xFF;
 }
 
 void DMA_SetCommandReg(int select, u8_t val)
@@ -122,7 +122,7 @@ u8_t DMA_GetIntermediate(int select)
     {
         return inb(DMA1_BASE + 0x0D);
     }
-    else return 0;
+    else return 0xFF;
 }
 
 void DMA_MasterReset(int select)
@@ -161,7 +161,7 @@ u8_t DMA_GetMultiChannelMaskReg(int select)
     {
         return inb(DMA1_BASE + 0x0F);
     }
-    else return 0;
+    else return 0xFF;
 }
 
 void DMA_SetMultiChannelMaskReg(int select, u8_t mask)
@@ -209,6 +209,6 @@ u8_t DMA_GetPageAddressReg(int channel)
         case DMA_CH6: return inb(0x89); break;
         case DMA_CH7: return inb(0x8A); break;
         
-        default: return 0;
+        default: return 0xFF;
     }
 }

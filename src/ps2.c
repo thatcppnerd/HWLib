@@ -42,7 +42,7 @@ u8_t PS2_GetStatus()
 
 void PS2_SendCommand(u8_t cmd)
 {
-    PS2_pollInputBuf(); // wait for an empty input buffer
+    PS2_PollInputBuf(); // wait for an empty input buffer
     outb(PS2_CMD, cmd); // send command
 }
 
@@ -55,7 +55,7 @@ u8_t PS2_ReadRAM(u8_t i)
 void PS2_WriteRAM(u8_t i, u8_t data)
 {
     PS2_SendCommand(0x60 + i);
-    PS2_sendData(data);
+    PS2_SendData(data);
 }
 
 
@@ -103,7 +103,7 @@ u8_t PS2_ReadOutputPort(void)
 void PS2_WriteOutputPort(u8_t val)
 {
     PS2_SendCommand(0xD1);
-    PS2_sendData(val);
+    PS2_SendData(val);
 }
 
 void PS2_PulseLine(u8_t mask)
