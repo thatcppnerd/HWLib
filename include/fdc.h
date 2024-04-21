@@ -3,6 +3,14 @@
 
 #include "types.h"
 #include "asm.h"
+#include "macros.h"
+
+
+// FDC Select
+
+#define FDC0    0
+#define FDC1    1
+#define FDC2    2
 
 // CHS Limits
 
@@ -13,29 +21,40 @@
 
 enum FDC_Ports
 {
-    // for FDC0
+    FDC0_IOBASE =                      0x3F0,
+    FDC1_IOBASE =                      0x370,
+    FDC2_IOBASE =                      0x360,
 
-    FDC0_STATUS_A =         0x3F0,
-    FDC0_STATUS_B =         0x3F1,
-    FDC0_DIGITAL_OUTPUT =   0x3F2,
-    FDC0_TAPE_DRV =         0x3F3,
-    FDC0_MAIN_STATUS =      0x3F4,
-    FDC0_DATARATE_SELECT =  0x3F4,
-    FDC0_FIFO =             0x3F5,
-    FDC0_DIGITAL_INPUT =    0x3F7,
-    FDC0_CONFIG_CTL =       0x3F7,
 
-    // for FDC1
+    FDC0_STATUS_REG_A =                 FDC0_IOBASE + 0,
+    FDC0_STATUS_REG_B =                 FDC0_IOBASE + 1,
+    FDC0_DIGITAL_OUTPUT_REG =           FDC0_IOBASE + 2,
+    FDC0_TAPE_DRIVE_REG =               FDC0_IOBASE + 3,
+    FDC0_MAIN_STATUS_REG =              FDC0_IOBASE + 4,
+    FDC0_DATARATE_SELECT_REG =          FDC0_IOBASE + 4,
+    FDC0_FIFO_REG =                     FDC0_IOBASE + 5,
+    FDC0_DIGITAL_INPUT_REG =            FDC0_IOBASE + 7,
+    FDC0_CONFIGUTATION_CONTROL_REG =    FDC0_IOBASE + 7,
 
-    FDC1_STATUSA =          0x3F0,
-    FDC1_STATUSB =          0x3F1,
-    FDC1_DOR =              0x3F2, // Data Output Register
-    FDC1_TAPE_DRV =         0x3F3,
-    FDC1_MSR =              0x3F4, // Master Output Register
-    FDC1_DATARATE_SELECT =  0x3F4,
-    FDC1_FIFO =             0x3F5,
-    FDC1_DIR =              0x3F7,
-    FDC1_CONFIG_CTL =       0x3F7
+    FDC1_STATUS_REG_A =                 FDC1_IOBASE + 0,
+    FDC1_STATUS_REG_B =                 FDC1_IOBASE + 1,
+    FDC1_DIGITAL_OUT_REG =              FDC1_IOBASE + 2,
+    FDC1_TAPE_DRIVE_REG =               FDC1_IOBASE + 3,
+    FDC1_MAIN_STATUS_REG =              FDC1_IOBASE + 4,
+    FDC1_DATARATE_SELECT_REG =          FDC1_IOBASE + 4,
+    FDC1_FIFO_REG =                     FDC1_IOBASE + 5,
+    FDC1_DIGITAL_IN_REG =               FDC1_IOBASE + 7,
+    FDC1_CONFIGUTATION_CONTROL_REG =    FDC1_IOBASE + 7,
+
+    FDC2_STATUS_REG_A =                 FDC2_IOBASE + 0,
+    FDC2_STATUS_REG_B =                 FDC2_IOBASE + 1,
+    FDC2_DIGITAL_OUT_REG =              FDC2_IOBASE + 2,
+    FDC2_TAPE_DRIVE_REG =               FDC2_IOBASE + 3,
+    FDC2_MAIN_STATUS_REG =              FDC2_IOBASE + 4,
+    FDC2_DATARATE_SELECT_REG =          FDC2_IOBASE + 4,
+    FDC2_FIFO_REG =                     FDC2_IOBASE + 5,
+    FDC2_DIGITAL_IN_REG =               FDC2_IOBASE + 7,
+    FDC2_CONFIGUTATION_CONTROL_REG =    FDC2_IOBASE + 7
 };
 
 // for Digital Output Register(DOR)
@@ -51,6 +70,13 @@ enum FDC_DOR_Flags
     FDC_DOR_MOTD =      0x80
 };
 
+// for Tape Drive Register(TDR)
+enum FDC_TDR_Flags
+{
+    FDC_TDR_SEL0 =  0x01,
+    FDC_TDR_SEL1 =  0x02,
+};
+
 // for Master Status Register(MSR)
 enum FDC_MSR_Flags
 {
@@ -62,6 +88,25 @@ enum FDC_MSR_Flags
     FDC_MSR_NDMA =      0x20,
     FDC_MSR_DIO =       0x40,
     FDC_MSR_RQM =       0x80
+};
+
+// for Datarate Select Register(DSR)
+enum FDC_DSR_Flags
+{
+    FDC_DSR_RATE0 =     0x01,
+    FDC_DSR_RATE1 =     0x02
+};
+
+// for Digital Input Register(DIR)
+enum FDC_DIR_Flags
+{
+    FDC_DIR_DISK_CHANGE =   0x80
+};
+
+enum FDC_CCR_Flags
+{             
+    FDC_CCR_RATE0 =     0x01,
+    FDC_CCR_RATE1 =     0x02
 };
 
 enum FDC_Command
@@ -89,15 +134,43 @@ enum FDC_Command
     FDC_CMD_SCAN_HIGH_OR_EQUAL =        0x1D
 };
 
+enum FDC_Command_Flags
+{
+    FDC_CMD_SK =    0x20,
+    FDC_CMD_MF =    0x40,
+    FDC_CMD_MT =    0x80
+};
 
-int FDC_ReadSectorsPIO(u32_t lba, u32_t count, void* dest);
-int FDC_WriteSectorsPIO(u32_t lba, u32_t count, void* src);
 
-int FDC_ReadSectorsDMA(u32_t lba, u32_t count, void* dest);
-int FDC_WriteSectorsDMA(u32_t lba, u32_t count, void* src);
 
-void FDC_ToggleDriveMotor(int drvno, int mode);
-void FDC_Reset();
+
+u8_t FDC_GetStatusRegA(int ctlr_no);
+u8_t FDC_GetStatusRegB(int ctlr_no);
+
+void FDC_SetDigitalOutputReg(u8_t data);
+u8_t FDC_GetDigitalOutputReg(void);
+
+void FDC_SetTapeDriveReg(u8_t data);
+u8_t FDC_GetTapeDriveReg(void);
+
+u8_t FDC_GetMainStatusReg(void);
+
+void FDC_SetDatarateSelectReg(u8_t data);
+
+void FDC_SetFIFOReg(u16_t data);
+u16_t FDC_GetFIFOReg(void);
+
+void FDC_SetDigitalInputReg(u8_t data);
+u8_t FDC_GetDigitalInputReg(void);
+
+void FDC_SetConfigurationControlReg(u8_t data);
+u8_t FDC_GetConfigurationControlReg(void);
+
+
+void FDC_ToggleDriveMotor(int drv_no, int mode);
+void FDC_SetDatarate(int rate);
+void FDC_ResetController(void);
+
 
 
 #endif

@@ -1,5 +1,5 @@
 #include "../include/pic.h"
-#include "../include/util.h"
+#include "../include/macros.h"
 
 
 void PIC_SetMask(int select, u8_t mask)
@@ -22,7 +22,7 @@ u8_t PIC_GetMask(int select)
 {
     if(select == PIC0) return inb(PIC0_DATA);
     else if(select == PIC1) return inb(PIC1_DATA);
-    else return 0xFF;
+    else return ERR_VAL;
     io_wait();
 }
 
@@ -46,7 +46,7 @@ u8_t PIC_ReadCommand(int select)
 {
     if(select == PIC0) inb(PIC0_CMD);
     else if(select == PIC1) inb(PIC1_CMD);
-    else return 0xFF;
+    else return ERR_VAL;
     io_wait();
 }
 
@@ -54,7 +54,7 @@ u8_t PIC_ReadData(int select)
 {
     if(select == PIC0) inb(PIC0_DATA);
     else if(select == PIC1) inb(PIC1_DATA);
-    else return 0xFF;
+    else return ERR_VAL;
     io_wait();
 }
 
@@ -72,7 +72,7 @@ u8_t PIC_ReadIRR(int select)
         io_wait();
         return inb(PIC1_CMD);
     }
-    else return 0xFF;
+    else return ERR_VAL;
 }
 
 u8_t PIC_ReadISR(int select)
@@ -89,7 +89,7 @@ u8_t PIC_ReadISR(int select)
         io_wait();
         return inb(PIC1_CMD);
     }
-    else return 0xFF;
+    else return ERR_VAL;
 }
 
 void PIC_Init(int select, u8_t icw1, u8_t icw2, u8_t icw3, u8_t icw4)
