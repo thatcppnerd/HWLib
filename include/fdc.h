@@ -1,4 +1,4 @@
-#ifndef __FDC_H__  0
+#ifndef __FDC_H__
 #define __FDC_H__
 
 #include "types.h"
@@ -95,5 +95,9 @@ int FDC_WriteSectorsPIO(u32_t lba, u32_t count, void* src);
 
 int FDC_ReadSectorsDMA(u32_t lba, u32_t count, void* dest);
 int FDC_WriteSectorsDMA(u32_t lba, u32_t count, void* src);
+
+void FDC_ToggleDriveMotor(int drvno, int mode);
+void FDC_Reset();
+
 
 #endif
