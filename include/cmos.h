@@ -2,7 +2,7 @@
 #define __CMOS_H__
 
 #include "types.h"
-#include "util.h"
+#include "macros.h"
 #include "asm.h"
 
 // CMOS Ports

@@ -44,7 +44,7 @@ u8_t DMA_GetStatusReg(int select)
     {
         return inb(DMA1_BASE + 8);
     }
-    else return 0xFF;
+    else return ERR_VAL;
 }
 
 void DMA_SetCommandReg(int select, u8_t val)
@@ -122,7 +122,7 @@ u8_t DMA_GetIntermediate(int select)
     {
         return inb(DMA1_BASE + 0x0D);
     }
-    else return 0xFF;
+    else return ERR_VAL;
 }
 
 void DMA_MasterReset(int select)
@@ -161,7 +161,7 @@ u8_t DMA_GetMultiChannelMaskReg(int select)
     {
         return inb(DMA1_BASE + 0x0F);
     }
-    else return 0xFF;
+    else return ERR_VAL;
 }
 
 void DMA_SetMultiChannelMaskReg(int select, u8_t mask)
@@ -209,6 +209,6 @@ u8_t DMA_GetPageAddressReg(int channel)
         case DMA_CH6: return inb(0x89); break;
         case DMA_CH7: return inb(0x8A); break;
         
-        default: return 0xFF;
+        default: return ERR_VAL;
     }
 }

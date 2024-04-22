@@ -3,7 +3,7 @@
 
 #include "types.h"
 #include "asm.h"
-#include "util.h"
+#include "macros.h"
 
 
 // Macros for channel select
