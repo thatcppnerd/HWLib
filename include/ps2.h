@@ -36,7 +36,7 @@ enum PS2_CCB_Flags
     PS2_CCB_PORT1_CLK =         0x10,
     PS2_CCB_PORT2_CLK =         0x20,
     PS2_CCB_PORT1_TRANS =       0x40
-} PS2_ConfigByte_t;
+};
 
 enum PS2_Output_Flags
 {
