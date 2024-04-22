@@ -3,7 +3,7 @@
 
 #include "types.h"
 
-#define PIT_OSC_FREQ 1193182 // Base oscilator frequency of PIT
+#define PIT_BASE_FREQ 1193182 // Base oscilator frequency of PIT
 
 // enums for PIT operating modes 
 
@@ -36,6 +36,10 @@
 //         nullCount : 1,
 //         outputPin : 1;
 // } PIT_ReadBack_t;
+
+#define PIT_GetFrequencyCount(freq) (u16_t)(PIT_BASE_FREQ / freq)
+#define PIT_GetCountFrequency(count) (PIT_BASE_FREQ / count)
+
 
 void PIT_SetReloadValue(u8_t channel, u16_t val);
 u16_t PIT_GetCurrentCount(u8_t channel);
