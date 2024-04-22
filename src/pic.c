@@ -20,10 +20,20 @@ void PIC_SetMasks(u8_t mask0, u8_t mask1)
 
 u8_t PIC_GetMask(int select)
 {
-    if(select == PIC0) return inb(PIC0_DATA);
-    else if(select == PIC1) return inb(PIC1_DATA);
-    else return ERR_VAL;
-    io_wait();
+    u8_t buf = 0;
+    if(select == PIC0) 
+    {
+        buf = inb(PIC0_DATA);
+        io_wait();
+        return buf;
+    }
+    else if(select == PIC1)
+    {
+        buf = inb(PIC1_DATA);
+        io_wait();
+        return buf;
+    }
+    return ERR_VAL;
 }
 
 void PIC_SendCommand(int select, u8_t cmd)
@@ -44,18 +54,39 @@ void PIC_SendData(int select, u8_t data)
 
 u8_t PIC_ReadCommand(int select)
 {
-    if(select == PIC0) inb(PIC0_CMD);
-    else if(select == PIC1) inb(PIC1_CMD);
+    u8_t buf = 0;
+    if(select == PIC0) 
+    {
+        buf = inb(PIC0_CMD);
+        io_wait();
+        return buf;
+    }
+    else if(select == PIC1)
+    {
+        buf = inb(PIC1_CMD);
+        io_wait();
+        return buf;
+    }
     else return ERR_VAL;
-    io_wait();
 }
 
 u8_t PIC_ReadData(int select)
 {
-    if(select == PIC0) inb(PIC0_DATA);
-    else if(select == PIC1) inb(PIC1_DATA);
-    else return ERR_VAL;
-    io_wait();
+    u8_t buf = 0;
+    if(select == PIC0)
+    {
+        buf = inb(PIC0_DATA);
+        io_wait();
+        return buf;
+    }
+    else if(select == PIC1)
+    {
+        buf = inb(PIC1_DATA);
+        io_wait();
+        return buf;
+    }
+    
+    return ERR_VAL;
 }
 
 u8_t PIC_ReadIRR(int select)
@@ -72,7 +103,7 @@ u8_t PIC_ReadIRR(int select)
         io_wait();
         return inb(PIC1_CMD);
     }
-    else return ERR_VAL;
+    return ERR_VAL;
 }
 
 u8_t PIC_ReadISR(int select)
