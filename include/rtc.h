@@ -59,6 +59,15 @@ u8_t RTC_GetMonth(void);
 u8_t RTC_GetYear(void);
 u8_t RTC_GetCentury(void);
 
+void RTC_SetSeconds(u8_t sec);
+void RTC_SetMinutes(u8_t min);
+void RTC_SetHours(u8_t hr);
+void RTC_SetWeekday(u8_t wkday);
+void RTC_SetDayOfMonth(u8_t day);
+void RTC_SetMonth(u8_t month);
+void RTC_SetYear(u8_t yr);
+void RTC_SetCentury(u8_t century);
+
 u8_t RTC_GetStatusA(void);
 u8_t RTC_GetStatusB(void);
 
