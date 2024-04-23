@@ -12,4 +12,10 @@ u32_t   PCI_CreateConfigAddress(u8_t bus, u8_t slot, u8_t func, u8_t offset);
 u8_t    PCI_Read8(u32_t addr);
 u16_t   PCI_Read16(u32_t addr);
 u32_t   PCI_Read32(u32_t addr);
+
+u8_t    PCI_Write8(u32_t addr);
+u16_t   PCI_Write16(u32_t addr);
+u32_t   PCI_Write32(u32_t addr);
+
+
 #endif
