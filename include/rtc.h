@@ -6,6 +6,7 @@
 
 #define RTC_BASE_FREQ 32768
 
+// Addresses for RTC Registers in CMOS
 enum RTC_Register
 {
     RTC_SECOND_REG =        CMOS_REG_RTC_SECOND,
