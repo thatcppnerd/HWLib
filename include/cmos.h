@@ -14,7 +14,7 @@ enum CMOS_Register
 {
     CMOS_REG_RTC_SECOND =       0x00,
     CMOS_REG_RTC_MINUTE =       0x02,
-    CMOS_REG_RTC_HOURS =        0x04,
+    CMOS_REG_RTC_HOUR =         0x04,
     CMOS_REG_RTC_WEEKDAY =      0x06,
     CMOS_REG_RTC_DAYOFMONTH =   0x07,
     CMOS_REG_RTC_MONTH =        0x08,
