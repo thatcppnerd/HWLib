@@ -25,7 +25,7 @@ u8_t PCI_Read8(u32_t addr)
     outdw(PCI_CONFIG_ADDRESS, addr - (addr % 4));
     io_wait();
     
-    register u32_t tmp = indw(PCI_CONFIG_DATA);
+    u32_t tmp = indw(PCI_CONFIG_DATA);
 
     return *((u8_t*)(&tmp + (addr % 4)));
 }
@@ -35,7 +35,7 @@ u16_t PCI_Read16(u32_t addr)
     outdw(PCI_CONFIG_ADDRESS, addr - (addr % 4));
     io_wait();
 
-    register u32_t tmp = indw(PCI_CONFIG_DATA);
+    u32_t tmp = indw(PCI_CONFIG_DATA);
 
     return *((u16_t*)(&tmp + (addr % 3)));
 }

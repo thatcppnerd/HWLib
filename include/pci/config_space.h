@@ -66,52 +66,53 @@ enum PCI_CFG1_Offsets
 
 typedef struct PCI_CommandReg
 {
-    ioSpaceRespond : 1,
-    memSpaceRespond : 1,
-    busmaster : 1,
-    specialCycles : 1,
-    memWriteAndInvalidateEnable : 1,
-    vgaPaletteSnoop : 1,
-    parityErrResponse : 1,
-    : 1,
-    enableSERR : 1,
-    enableFastBackToBack : 1,
-    disableInts : 1,
-    : 5
+    u32_t
+        ioSpaceRespond :1,
+        memSpaceRespond :1,
+        busmaster :1,
+        specialCycles :1,
+        memWriteAndInvalidateEnable :1,
+        vgaPaletteSnoop :1,
+        parityErrResponse :1,
+        :1,
+        enableSERR :1,
+        enableFastBackToBack :1,
+        disableInts :1,
+        :5;
 } PCI_CommandReg_t;
 
 typedef struct PCI_StatusReg
 {
     u32_t
         :3,
-        interruptStatus : 1,
-        capabilitiesList : 1,
-        capable_66MHz : 1,
+        interruptStatus :1,
+        capabilitiesList :1,
+        capable_66MHz :1,
         :1,
-        fastBackToBackCapable : 1,
-        masterDataParityError : 1,
-        devselTiming : 2,
-        targetAbortSignaled : 1,
-        targetAbortRecv : 1,
-        masterAbortRecv : 1
-        masterAbortSignaled : 1,
+        fastBackToBackCapable :1,
+        masterDataParityError :1,
+        devselTiming :2,
+        targetAbortSignaled :1,
+        targetAbortRecv :1,
+        masterAbortRecv :1,
+        masterAbortSignaled :1;
 } PCI_StatusReg_t;
 
 typedef struct BAR_MEM
 {
     u32_t
-        : 1,
-        type : 2,
-        prefetch : 1,
-        base : 28
+        :1,
+        type :2,
+        prefetch :1,
+        base :28;
 } BAR_MEM_t;
 
 typedef struct BAR_IO
 {
     u32_t
-        : 1,
-        : 1,
-        base : 30
+        :1,
+        :1,
+        base :30;
 } BAR_IO_t;
 
 

@@ -6,7 +6,7 @@
 
 #include "config_space.h"
 
-#if defined(__PCI_OLD_H__) || defined(__PCI_MMIO_H__)
+#if !(defined(__PCI_OLD_H__) || defined(__PCI_MMIO_H__))
 
 enum PCI_Ports
 {
