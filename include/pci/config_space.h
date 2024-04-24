@@ -88,7 +88,7 @@ typedef struct PCI_StatusReg
         :1,
         fastBackToBackCapable : 1,
         masterDataParityError : 1,
-        DEVSELTiming : 2,
+        devselTiming : 2,
         targetAbortSignaled : 1,
         targetAbortRecv : 1,
         masterAbortRecv : 1
