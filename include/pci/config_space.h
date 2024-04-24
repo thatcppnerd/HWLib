@@ -1,6 +1,8 @@
 #ifndef __CONFIG_SPACE_H__ 
 #define __CONFIG_SPACE_H__
 
+#include "../types.h"
+
 enum PCI_CFGCommon_Offsets
 {
     PCI_CFG_DEVICE_ID =         0x00,
