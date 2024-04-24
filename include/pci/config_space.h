@@ -93,10 +93,24 @@ typedef struct PCI_StatusReg
         targetAbortRecv : 1,
         masterAbortRecv : 1
         masterAbortSignaled : 1,
-} PCI_StatusReg_t
+} PCI_StatusReg_t;
 
+typedef struct BAR_MEM
+{
+    u32_t
+        : 1,
+        type : 2,
+        prefetch : 1,
+        base : 28
+} BAR_MEM_t;
 
-
+typedef struct BAR_IO
+{
+    u32_t
+        : 1,
+        : 1,
+        base : 30
+} BAR_IO_t;
 
 
 #endif
