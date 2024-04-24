@@ -1,7 +1,7 @@
 #ifndef __CONFIG_SPACE_H__ 
 #define __CONFIG_SPACE_H__
 
-enum PCI_CFG_Offsets
+enum PCI_CFGCommon_Offsets
 {
     PCI_CFG_DEVICE_ID =         0x00,
     PCI_CFG_VENDOR_ID =         0x02,
@@ -62,28 +62,41 @@ enum PCI_CFG1_Offsets
     PCI_CFG1_INT_LINE =                     0x3F
 };
 
-enum PCI_COMMAND_REG_Flags
+typedef struct PCI_CommandReg
 {
-    PCI_CMD_IO_SPACE =                  0x0001,
-    PCI_CMD_MEM_SPACE =                 0x0002,
-    PCI_CMD_BUSMASTER =                 0x0004,
-    PCI_CMD_SPECIAL_CYCLE =             0x0008,
-    PCI_CMD_MEM_WRITE_INVAL_ENABLED =   0x0010,
-    PCI_CMD_VGA_PALETTE_SNOOP =         0x0020,
-    PCI_CMD_PARITY_ERROR_RESPONSE =     0x0040,
-    PCI_CMD_SERR_ENABLE =               0x0100,
-    PCI_CMD_FAST_BACK_TO_BACK_ENABLE =  0x0200,
-    PCI_CMD_INT_DISABLE =               0x0400    
-};
+    ioSpaceRespond : 1,
+    memSpaceRespond : 1,
+    busmaster : 1,
+    specialCycles : 1,
+    memWriteAndInvalidateEnable : 1,
+    vgaPaletteSnoop : 1,
+    parityErrResponse : 1,
+    : 1,
+    enableSERR : 1,
+    enableFastBackToBack : 1,
+    disableInts : 1,
+    : 5
+} PCI_CommandReg_t;
 
-enum PCI_STATUS_REG_Flags
+typedef struct PCI_StatusReg
 {
-    PCI_STATUS_INT_STATUS =                 0x0008,
-    PCI_STATUS_CAPABILITES_LIST =           0x0010,
-    PCI_STATUS_66MHZ_CAPABLE =              0x0020,
-    PCI_STATUS_FAST_BACK_TO_BACK_CAPABLE =  0x0080,
-    PCI_STATUS_MASTER_PARITY_ERROR =        0x0100,
-    PCI_STATUS_DEVSEL_TIMING =              0x0200
-};
+    u32_t
+        :3,
+        interruptStatus : 1,
+        capabilitiesList : 1,
+        capable_66MHz : 1,
+        :1,
+        fastBackToBackCapable : 1,
+        masterDataParityError : 1,
+        DEVSELTiming : 2,
+        targetAbortSignaled : 1,
+        targetAbortRecv : 1,
+        masterAbortRecv : 1
+        masterAbortSignaled : 1,
+} PCI_StatusReg_t
+
+
+
+
 
 #endif
