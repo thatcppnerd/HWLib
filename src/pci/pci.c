@@ -1,4 +1,4 @@
-#include "../include/pci.h"
+#include "../../include/pci/pci.h"
 
 
 u32_t PCI_CreateConfigAddress(u8_t bus, u8_t slot, u8_t func, u8_t offset)
@@ -18,8 +18,6 @@ u32_t PCI_CreateConfigAddress(u8_t bus, u8_t slot, u8_t func, u8_t offset)
 
     return addr;
 }
-
-
 
 u32_t PCI_Read32(u32_t addr)
 {

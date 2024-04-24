@@ -16,9 +16,9 @@ u8_t    PCI_Read8(u32_t addr);
 u16_t   PCI_Read16(u32_t addr);
 u32_t   PCI_Read32(u32_t addr);
 
-void   PCI_Write8(u32_t addr, u8_t val);
-void   PCI_Write16(u32_t addr, u16_t val);
-void   PCI_Write32(u32_t addr, u32_t val);
+void    PCI_Write8(u32_t addr, u8_t val);
+void    PCI_Write16(u32_t addr, u16_t val);
+void    PCI_Write32(u32_t addr, u32_t val);
 
 
 #endif
