@@ -5,8 +5,8 @@
 
 enum VGA_Ports
 {   
-    VGA_CRTC_CTLR_ADDR =        0x3B4,
-    VGA_CRTC_CTLR_DATA =        0x3B5,
+    VGA_CRTC_CTL_ADDR =         0x3B4,
+    VGA_CRTC_CTL_DATA =         0x3B5,
 
     VGA_INPUT_STATUS1_ALT =     0x3BA, // Read
     VGA_FEATURE_CTL_ALT1 =      0x3BA, // Write
@@ -32,10 +32,21 @@ enum VGA_Ports
 
     VGA_DAC_DATA =              0x3C9,
 
-    VGA_FEATURE_CTL_ALT2 =      0x3CA, // Read 
+    VGA_FEATURE_CTL_ALT2 =      0x3CA, // Read
+
+    VGA_MISC_OUTPUT_ALT =       0x3CC, // Read
+
+    VGA_GRAPHICS_CTL_ADDR =     0x3CE,
+    VGA_GRAPHICS_CTL_DATA =     0x3CF,
+
+    VGA_CRTC_CTL_ADDR_ALT =     0x3D4,
+    VGA_CRTC_CTL_DATA_ALT =     0x3D5,
 
     VGA_INPUT_STATUS1 =         0x3DA, // Read
-    vGA_FEATURE_CTL =           0x3DA // Write
+    VGA_FEATURE_CTL =           0x3DA // Write
 };
+
+
+
 
 #endif
