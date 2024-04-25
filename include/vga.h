@@ -46,7 +46,8 @@ enum VGA_Ports
     VGA_FEATURE_CTL =           0x3DA // Write
 };
 
-
+u8_t VGA_ReadRegister(u16_t index);
+void VGA_WriteRegister(u16_t index, u8_t)
 
 
 #endif
