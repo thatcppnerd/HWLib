@@ -15,7 +15,7 @@ enum PCI_Ports
     PCI_CONFIG_DATA =           0xCFC
 };
 
-u
+u16_t PCI_CreateConfigPort(u8_t device, u8_t offset);
 
 #else
 #pragma message("WARNING: Use of multiple PCI versions detected.")

@@ -5,18 +5,20 @@
 
 u32_t PCI_CreateConfigAddress(u8_t bus, u8_t slot, u8_t func, u8_t offset)
 {
-    u32_t addr = (0x00000001 << 15);
+    u32_t addr = 0;
 
     addr |= bus;
+
     addr <<= 5; // make space
-
     addr |= slot & 0x1F;
+
     addr <<= 3; // make space
-
     addr |= (func & 0x07);
-    addr <<= 8; // make space
 
+    addr <<= 8; // make space
     addr |= offset;
+
+    addr |= 0x80000000;
 
     return addr;
 }
