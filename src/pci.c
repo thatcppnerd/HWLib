@@ -31,7 +31,7 @@ void PCI_SetConfigAddress(u32_t addr)
 
 u32_t PCI_GetConfigData(void)
 {
-    u32_t data = outdw(PCI_CONFIG_DATA);
+    u32_t data = indw(PCI_CONFIG_DATA);
     io_wait();
     return data;
 }
