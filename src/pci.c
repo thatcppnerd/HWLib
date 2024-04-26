@@ -1,7 +1,7 @@
 #include "../include/pci/pci.h"
 
-#include "../include/pci/macros.h"
-#include "../include/pci/asm.h"
+#include "../include/macros.h"
+#include "../include/asm.h"
 
 u32_t PCI_CreateConfigAddress(u8_t bus, u8_t slot, u8_t func, u8_t offset)
 {
