@@ -1,24 +1,48 @@
 #include "../include/pci/pci.h"
 
+#include "../include/pci/macros.h"
+#include "../include/pci/asm.h"
 
 u32_t PCI_CreateConfigAddress(u8_t bus, u8_t slot, u8_t func, u8_t offset)
 {
-    u32_t addr = (0x00000001 << 15);
+    u32_t addr = 0;
 
     addr |= bus;
+
     addr <<= 5; // make space
-
     addr |= slot & 0x1F;
+
     addr <<= 3; // make space
-
     addr |= (func & 0x07);
-    addr <<= 8; // make space
 
+    addr <<= 8; // make space
     addr |= offset;
+
+    addr |= 0x80000000;
 
     return addr;
 }
 
+void PCI_SetConfigAddress(u32_t addr)
+{
+    outdw(PCI_CONFIG_ADDRESS, addr);
+    io_wait();
+}
+
+u32_t PCI_GetConfigData(void)
+{
+    u32_t data = indw(PCI_CONFIG_DATA);
+    io_wait();
+    return data;
+}
+
+void PCI_SetConfigData(u32_t data)
+{
+    outdw(PCI_CONFIG_DATA, data);
+    io_wait();
+}
+
+u32_t PCI_SetConfigAddress();
 
 u8_t PCI_Read8(u32_t addr)
 {
