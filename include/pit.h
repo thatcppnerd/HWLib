@@ -41,10 +41,10 @@
 #define PIT_GetCountFrequency(count) (PIT_BASE_FREQ / count)
 
 
-void PIT_SetReloadValue(u8_t channel, u16_t val);
-u16_t PIT_GetCurrentCount(u8_t channel);
+void PIT_SetReloadValue(int channel, u16_t val);
+u16_t PIT_GetCurrentCount(int channel);
 
-void PIT_LatchCount(u8_t channel);
+void PIT_LatchCount(int channel);
 
 void PIT_SendCommand(u8_t data);
 
