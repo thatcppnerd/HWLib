@@ -38,8 +38,8 @@ enum VGA_Ports
     VGA_GRAPHICS_CTL_ADDR =     0x3CE,
     VGA_GRAPHICS_CTL_DATA =     0x3CF,
 
-    VGA_CRTC_ADDR_ALT =     0x3D4,
-    VGA_CRTC_DATA_ALT =     0x3D5,
+    VGA_CRTC_ADDR_ALT =         0x3D4,
+    VGA_CRTC_DATA_ALT =         0x3D5,
 
     VGA_INPUT_STATUS1 =         0x3DA, // Read
     VGA_FEATURE_CTL =           0x3DA // Write

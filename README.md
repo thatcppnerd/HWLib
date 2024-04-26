@@ -10,4 +10,3 @@ HWLib is a library providing wrappers, functions, and utilities for base PC Comp
 ## What's supported right now?
 * x86/x64 architectures
 * ISA Components (PIT, PIC, PS/2 Controller, etc.)
-
