@@ -1,11 +1,11 @@
-#ifndef __PCI_H__
-#define __PCI_H__
+#ifndef __PCI_V2_H__
+#define __PCI_V2_H__
 
 #include "../types.h"
 
 #include "config_space.h"
 
-#if !(defined(__PCI_OLD_H__) || defined(__PCI_MMIO_H__))
+#if !(defined(__PCI_V1_H__) || defined(__PCI_V3_H__))
 
 enum PCI_Ports
 {
@@ -32,7 +32,7 @@ void    PCI_Write32(u32_t addr, u32_t val);
 
 
 #else
-#pragma warning("WARNING: Use of multiple PCI versions detected.")
+#pragma message("WARNING: Use of multiple PCI versions detected.")
 #endif
 
 #endif
