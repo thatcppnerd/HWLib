@@ -32,7 +32,7 @@ void    PCI_Write32(u32_t addr, u32_t val);
 
 
 #else
-#pragma error("WARNING: Use of multiple PCI versions detected.")
+#pragma warning("WARNING: Use of multiple PCI versions detected.")
 #endif
 
 #endif
