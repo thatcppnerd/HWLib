@@ -89,6 +89,9 @@ void VGA_SetDACDataReg(u8_t val);
 u8_t VGA_GetGraphicsControlAddressReg(void);
 void VGA_SetGraphicsControlAddressReg(u8_t val);
 
+u8_t VGA_GetInputStatusReg1(void);
+void VGA_SetFeatureControl(u8_t val);
+
 
 
 
