@@ -16,6 +16,7 @@ enum PCI_Ports
 
 u32_t   PCI_CreateConfigAddress(u8_t bus, u8_t slot, u8_t func, u8_t offset);
 
+u32_t   PCI_GetConfigAddress(void);
 void    PCI_SetConfigAddress(u32_t addr);
 
 u32_t   PCI_GetConfigData(void);
@@ -31,7 +32,7 @@ void    PCI_Write32(u32_t addr, u32_t val);
 
 
 #else
-#pragma message("WARNING: Use of multiple PCI versions detected.")
+#pragma warning("WARNING: Use of multiple PCI versions detected.")
 #endif
 
 #endif
