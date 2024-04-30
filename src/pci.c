@@ -33,6 +33,7 @@ u32_t PCI_GetConfigData(void)
 {
     u32_t data = indw(PCI_CONFIG_DATA);
     io_wait();
+
     return data;
 }
 
@@ -42,33 +43,46 @@ void PCI_SetConfigData(u32_t data)
     io_wait();
 }
 
-u32_t PCI_SetConfigAddress();
+u32_t PCI_GetConfigAddress(void)
+{
+    u32_t tmp = indw(PCI_CONFIG_ADDRESS);
+    io_wait();
+
+    return tmp;
+}
+
+void PCI_SetConfigAddress(u32_t addr)
+{
+    outdw(PCI_CONFIG_ADDRESS, addr);
+    io_wait();
+}
 
 u8_t PCI_Read8(u32_t addr)
 {
-    outdw(PCI_CONFIG_ADDRESS, addr - (addr % 4));
+    PCI_SetConfigAddress(addr - (addr % 4));
     io_wait();
     
-    u32_t tmp = indw(PCI_CONFIG_DATA);
+    u32_t tmp = PCI_GetConfigData();
 
     return *((u8_t*)(&tmp + (addr % 4)));
 }
 
 u16_t PCI_Read16(u32_t addr)
 {
-    outdw(PCI_CONFIG_ADDRESS, addr - (addr % 4));
+    PCI_SetConfigAddress(addr - (addr % 4));
     io_wait();
 
-    u32_t tmp = indw(PCI_CONFIG_DATA);
+    u32_t tmp = PCI_GetConfigData();
 
     return *((u16_t*)(&tmp + (addr % 3)));
 }
 
 u32_t PCI_Read32(u32_t addr)
 {
-    outdw(PCI_CONFIG_ADDRESS, addr);
+    PCI_SetConfigAddress(addr);
     io_wait();
-    return indw(PCI_CONFIG_DATA);
+    
+    return PCI_GetConfigData();
 }
 
 
