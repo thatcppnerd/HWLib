@@ -1,4 +1,4 @@
-#include "../include/pci/pci.h"
+#include "../include/pci/pci_v2.h"
 
 #include "../include/macros.h"
 #include "../include/asm.h"
@@ -81,7 +81,7 @@ u32_t PCI_Read32(u32_t addr)
 {
     PCI_SetConfigAddress(addr);
     io_wait();
-    
+
     return PCI_GetConfigData();
 }
 
