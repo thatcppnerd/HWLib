@@ -13,4 +13,4 @@ Sets the reload value of the selected channel.
 
 ### PIT_GetCurrentCount
 ### PIT_LatchCount
-### PIT_SendCommand
+### PIT_SendCommand0
