@@ -45,7 +45,7 @@ enum VGA_Ports
     VGA_FEATURE_CTL =           0x3DA // Write
 };
 
-enum VGA_GraphicsCtl_RegIndices
+enum VGA_RegIndices
 {
     VGA_GCTL_SET_RESET_REG =    0x00
 };
