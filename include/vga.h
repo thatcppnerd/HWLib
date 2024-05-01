@@ -45,11 +45,10 @@ enum VGA_Ports
     VGA_FEATURE_CTL =           0x3DA // Write
 };
 
-enum VGA_RegisterIndices
+enum VGA_GraphicsCtl_RegIndices
 {
-    VGA_
+    VGA_GCTL_SET_RESET_REG =    0x00
 };
-
 
 u8_t VGA_GetCRTCAddressReg(void);
 void VGA_SetCRTCAddressReg(u8_t addr);
@@ -88,7 +87,6 @@ void VGA_SetDACDataReg(u8_t val);
 
 u8_t VGA_GetGraphicsControlAddressReg(void);
 void VGA_SetGraphicsControlAddressReg(u8_t val);
-
 u8_t VGA_GetInputStatusReg1(void);
 void VGA_SetFeatureControl(u8_t val);
 
