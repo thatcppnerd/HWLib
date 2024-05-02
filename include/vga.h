@@ -45,10 +45,83 @@ enum VGA_Ports
     VGA_FC =                    0x3DA // Write
 };
 
-enum VGA_RegIndices
+enum VGA_GC_RegIndices
 {
-    VGA_GC_SET_RESET_REG =    0x00
+    VGA_GC_SR_REG =         0x00,
+    VGA_GC_SR_ENABLE =      0x01,
+    VGA_GC_COL_CMP =        0x02,
+    VGA_GC_DATA_ROT =       0x03,
+    VGA_GC_READ_MAP_SEL =   0x04,
+    VGA_GC_GR_MODE =        0x05,
+    VGA_GC_MISC_GR =        0x06,
+    VGA_GC_COL_DONT_CARE =  0x07,
+    VGA_GC_BIT_MASK =       0x08
 };
+
+enum VGA_SEQ_RegIndices
+{
+    VGA_SEQ_RESET =         0x00,
+    VGA_SEQ_CLK_MODE =      0x01,
+    VGA_SEQ_MAP_MASK =      0x02,
+    VGA_SEQ_CHR_MAP_SEL =   0x03,
+    VGA_SEQ_MEM_MODE =      0x04
+};
+
+enum VGA_ATTR_RegIndices
+{
+    VGA_ATTR_PAL0 =             0x00,
+    VGA_ATTR_PAL1 =             0x01,
+    VGA_ATTR_PAL2 =             0x02,
+    VGA_ATTR_PAL3 =             0x03,
+    VGA_ATTR_PAL4 =             0x04,
+    VGA_ATTR_PAL5 =             0x05,
+    VGA_ATTR_PAL6 =             0x06,
+    VGA_ATTR_PAL7 =             0x07,
+    VGA_ATTR_PAL8 =             0x08,
+    VGA_ATTR_PAL9 =             0x09,
+    VGA_ATTR_PAL10 =            0x0A,
+    VGA_ATTR_PAL11 =            0x0B,
+    VGA_ATTR_PAL12 =            0x0C,
+    VGA_ATTR_PAL13 =            0x0D,
+    VGA_ATTR_PAL14 =            0x0E,
+    VGA_ATTR_PAL15 =            0x0F,
+
+    VGA_ATTR_MODE_CTL =         0x10,
+    VGA_ATTR_OVRSCN_COL =       0x11,
+    VGA_ATTR_COL_PLN_ENABLE =   0x12,
+    VGA_ATTR_HORI_PAN_REG =     0x13,
+    VGA_ATTR_COL_SEL =          0x14
+};  
+
+enum VGA_CRTC_RegIndices
+{
+    VGA_CRTC_HORI_TOTAL =       0x00,
+    VGA_CRTC_END_HORI_DSP =     0x01,
+    VGA_CRTC_START_HORI_BNK =   0x02,
+    VGA_CRTC_END_HORI_BNK =     0x03,
+    VGA_CRTC_START_HORI_RTRC =  0x04,
+    VGA_CRTC_END_HORI_RTRC =    0x05,
+    VGA_CRTC_VERT_TOTAL =       0x06,
+    VGA_CRTC_OVFLW =            0x07,
+    VGA_CRTC_PRESET_ROW_SCN =   0x08,
+    VGA_CRTC_MAX_SCNLNE =       0x09,
+    VGA_CRTC_CRSR_START =       0x0A,
+    VGA_CRTC_CRSR_END =         0x0B,
+    VGA_CRTC_START_ADDR_HI =    0x0C,
+    VGA_CRTC_START_ADDR_LO =    0x0D,
+    VGA_CRTC_CRSR_LOC_HI =      0x0E,
+    VGA_CRTC_CRSR_LOC_LO =      0x0F,
+    VGA_CRTC_VERT_RTRC_START =  0x10,
+    VGA_CRTC_VERT_RTRC_END =    0x11,
+    VGA_CRTC_VERT_DSP_END =     0x12,
+    VGA_CRTC_OFFSET =           0x13,
+    VGA_CRTC_UNDERLINE_LOC =    0x14,
+    VGA_CRTC_START_VBNK =       0x15,
+    VGA_CRTC_END_VBNK =         0x16,
+    VGA_CRTC_MODE_CTL =         0x17,
+    VGA_CRTC_LN_CMP =           0x18  
+};
+
 
 u8_t VGA_GetCRTCAddressReg(void);
 void VGA_SetCRTCAddressReg(u8_t addr);
