@@ -16,7 +16,7 @@ enum VGA_Ports
 
     VGA_ATTR_DATA =             0x3C1,
 
-    VGA_IN_STAT0 =              0x3C2, // Read
+    VGA_IN_STATUS0 =            0x3C2, // Read
     VGA_MISC_OUT =              0x3C2, // Write
 
     VGA_SEQ_ADDR =              0x3C4,
@@ -41,7 +41,7 @@ enum VGA_Ports
     VGA_CRTC_ADDR_ALT =         0x3D4,
     VGA_CRTC_DATA_ALT =         0x3D5,
 
-    VGA_IN_STAT1 =              0x3DA, // Read
+    VGA_IN_STATUS1 =            0x3DA, // Read
     VGA_FC =                    0x3DA // Write
 };
 
@@ -123,12 +123,12 @@ enum VGA_CRTC_RegIndices
 };
 
 
-u8_t VGA_GetCRTCAddressReg(void);
-void VGA_SetCRTCAddressReg(u8_t addr);
+u8_t VGA_GetCRTCAddrReg(void);
+void VGA_SetCRTCAddrReg(u8_t addr);
 
-u8_t VGA_GetInputStatusReg(void);
+u8_t VGA_GetInputStatusReg0(void);
 
-void VGA_SetFeatureControlReg(u8_t val);
+void VGA_SetFCReg(u8_t val);
 
 u8_t VGA_GetIndexReg(void);
 void VGA_SetIndexReg(u8_t val);
@@ -139,7 +139,6 @@ void VGA_SetDataReg(u8_t val);
 u8_t VGA_GetAttribDataReg(void);
 void VGA_SetAttribDataReg(u8_t val);
 
-u8_t VGA_GetInputStatusReg0(void);
 void VGA_SetMiscellaneousOutputReg(u8_t val);
 
 u8_t VGA_GetSequencerAddressReg(void);
