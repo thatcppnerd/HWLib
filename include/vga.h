@@ -5,49 +5,49 @@
 
 enum VGA_Ports
 {   
-    VGA_CRTC_ADDR =         0x3B4,
-    VGA_CRTC_DATA =         0x3B5,
+    VGA_CRTC_ADDR =             0x3B4,
+    VGA_CRTC_DATA =             0x3B5,
 
-    VGA_INPUT_STATUS1_ALT =     0x3BA, // Read
-    VGA_FEATURE_CTL_ALT1 =      0x3BA, // Write
+    VGA_IN_STAT1_ALT =          0x3BA, // Read
+    VGA_FC_ALT1 =               0x3BA, // Write
 
     VGA_INDEX =                 0x3C0,
     VGA_DATA =                  0x3C0,
 
-    VGA_ATTRIB_DATA =           0x3C1,
+    VGA_ATTR_DATA =             0x3C1,
 
-    VGA_INPUT_STATUS0 =         0x3C2, // Read
-    VGA_MISC_OUTPUT =           0x3C2, // Write
+    VGA_IN_STAT0 =              0x3C2, // Read
+    VGA_MISC_OUT =              0x3C2, // Write
 
-    VGA_SEQUENCER_ADDR =        0x3C4,
-    VGA_SEQUENCER_DATA =        0x3C5,
+    VGA_SEQ_ADDR =              0x3C4,
+    VGA_SEQ_DATA =              0x3C5,
 
     VGA_DAC_MASK =              0x3C6,
 
     VGA_DAC_STATE =             0x3C7, // Read
-    VGA_DAC_ADDR_READMODE =     0x3C7, // Write
+    VGA_DAC_ADDR_RM =           0x3C7, // Write
 
-    VGA_DAC_ADDR_WRITEMODE =    0x3C8,
+    VGA_DAC_ADDR_WM =           0x3C8,
 
     VGA_DAC_DATA =              0x3C9,
 
-    VGA_FEATURE_CTL_ALT2 =      0x3CA, // Read
+    VGA_FC_ALT2 =               0x3CA, // Read
 
-    VGA_MISC_OUTPUT_ALT =       0x3CC, // Read
+    VGA_MISC_OUT_ALT =          0x3CC, // Read
 
-    VGA_GRAPHICS_CTL_ADDR =     0x3CE,
-    VGA_GRAPHICS_CTL_DATA =     0x3CF,
+    VGA_GC_ADDR =               0x3CE,
+    VGA_GC_DATA =               0x3CF,
 
     VGA_CRTC_ADDR_ALT =         0x3D4,
     VGA_CRTC_DATA_ALT =         0x3D5,
 
-    VGA_INPUT_STATUS1 =         0x3DA, // Read
-    VGA_FEATURE_CTL =           0x3DA // Write
+    VGA_IN_STAT1 =              0x3DA, // Read
+    VGA_FC =                    0x3DA // Write
 };
 
 enum VGA_RegIndices
 {
-    VGA_GCTL_SET_RESET_REG =    0x00
+    VGA_GC_SET_RESET_REG =    0x00
 };
 
 u8_t VGA_GetCRTCAddressReg(void);
