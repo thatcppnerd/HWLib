@@ -64,14 +64,6 @@ u8_t VGA_GetAttrDataReg(void)
     return reg;
 }
 
-u8_t VGA_GetMiscOutputReg(void)
-{
-    register u8_t reg = inb(VGA_MISC_OUT_RD);
-    io_wait();
-
-    return reg;
-}
-
 void VGA_SetAttrDataReg(u8_t val)
 {
     inb(0x3DA);

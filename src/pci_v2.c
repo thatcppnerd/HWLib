@@ -51,12 +51,6 @@ u32_t PCI_GetConfigAddress(void)
     return tmp;
 }
 
-void PCI_SetConfigAddress(u32_t addr)
-{
-    outdw(PCI_CONFIG_ADDRESS, addr);
-    io_wait();
-}
-
 u8_t PCI_Read8(u32_t addr)
 {
     PCI_SetConfigAddress(addr - (addr % 4));
