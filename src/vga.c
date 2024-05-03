@@ -16,9 +16,9 @@ void VGA_SetCRTCAddrReg(u8_t addr)
     io_wait();
 }
 
-u8_t VGA_GetInputStatusReg(void)
+u8_t VGA_GetInputStatusReg0(void)
 {
-    u8_t reg = inb(VGA_CRTC_ADDR);
+    register u8_t reg = inb(VGA_CRTC_ADDR);
     io_wait();
 
     return reg;
@@ -30,24 +30,73 @@ void VGA_SetFCReg(u8_t val)
     io_wait();
 }
 
-u8_t VGA_GetIndexReg(void)
+u8_t VGA_GetAttrIndexReg(void)
 {
     inb(0x3DA); // set index/data port to index mode
     io_wait();
 
-    u8_t reg = inb(VGA_INDEX);
+    register u8_t reg = inb(VGA_ATTR_INDEX);
     io_wait();
 
     return reg;
 }
 
-void VGA_SetIndexReg(u8_t val)
+void VGA_SetAttrIndexReg(u8_t val)
 {
     inb(0x3DA); // set index/data port to index mode
     io_wait();
 
-    outb(VGA_INDEX, val);
+    outb(VGA_ATTR_INDEX, val);
     io_wait();
 }
 
-void VGA_
+u8_t VGA_GetAttrDataReg(void)
+{
+    inb(0x3DA); // set to index
+    io_wait();
+
+    inb(0x3DA); // set to data
+    io_wait();
+
+    register u8_t reg = inb(VGA_ATTR_DATA);
+    io_wait();
+
+    return reg;
+}
+
+u8_t VGA_GetMiscOutputReg(void)
+{
+    register u8_t reg = inb(VGA_MISC_OUT_RD);
+    io_wait();
+
+    return reg;
+}
+
+void VGA_SetAttrDataReg(u8_t val)
+{
+    inb(0x3DA);
+    io_wait();
+
+    inb(0x3DA);
+    io_wait();
+
+    outb(VGA_ATTR_DATA, val);
+    io_wait();
+}
+
+
+u8_t VGA_GetMiscOutputReg(void)
+{
+    register u8_t reg = inb(VGA_MISC_OUT_RD);
+    io_wait();
+
+    return reg;
+}
+
+void VGA_SetMiscOutputReg(u8_t val)
+{
+    outb(VGA_MISC_OUT_WR, val);
+    io_wait();
+}
+
+

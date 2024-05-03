@@ -11,13 +11,13 @@ enum VGA_Ports
     VGA_IN_STAT1_ALT =          0x3BA, // Read
     VGA_FC_ALT1 =               0x3BA, // Write
 
-    VGA_INDEX =                 0x3C0,
-    VGA_DATA =                  0x3C0,
+    VGA_ATTR_INDEX =            0x3C0,
+    VGA_ATTR_DATA =             0x3C0,
 
-    VGA_ATTR_DATA =             0x3C1,
+    VGA_ATTR_DATA_READ =        0x3C1,
 
     VGA_IN_STATUS0 =            0x3C2, // Read
-    VGA_MISC_OUT =              0x3C2, // Write
+    VGA_MISC_OUT_WR =           0x3C2, // Write
 
     VGA_SEQ_ADDR =              0x3C4,
     VGA_SEQ_DATA =              0x3C5,
@@ -33,7 +33,7 @@ enum VGA_Ports
 
     VGA_FC_ALT2 =               0x3CA, // Read
 
-    VGA_MISC_OUT_ALT =          0x3CC, // Read
+    VGA_MISC_OUT_RD =           0x3CC, // Read
 
     VGA_GC_ADDR =               0x3CE,
     VGA_GC_DATA =               0x3CF,
@@ -130,16 +130,17 @@ u8_t VGA_GetInputStatusReg0(void);
 
 void VGA_SetFCReg(u8_t val);
 
-u8_t VGA_GetIndexReg(void);
-void VGA_SetIndexReg(u8_t val);
+u8_t VGA_GetAttrIndexReg(void);
+void VGA_SetAttrIndexReg(u8_t val);
 
-u8_t VGA_GetDataReg(void);
-void VGA_SetDataReg(u8_t val);
+u8_t VGA_GetAttrDataReg(void);
+void VGA_SetAttrDataReg(u8_t val);
 
-u8_t VGA_GetAttribDataReg(void);
-void VGA_SetAttribDataReg(u8_t val);
+u8_t VGA_GetAttrDataReadReg(void);
+void VGA_SetAttrDataReadReg(u8_t val);
 
-void VGA_SetMiscellaneousOutputReg(u8_t val);
+u8_t VGA_GetMiscOutputReg(void);
+void VGA_SetMiscOutputReg(u8_t val);
 
 u8_t VGA_GetSequencerAddressReg(void);
 void VGA_SetSequencerAddressReg(u8_t val);
