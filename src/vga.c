@@ -29,3 +29,25 @@ void VGA_SetFCReg(u8_t val)
     outb(VGA_FC, val);
     io_wait();
 }
+
+u8_t VGA_GetIndexReg(void)
+{
+    inb(0x3DA); // set index/data port to index mode
+    io_wait();
+
+    u8_t reg = inb(VGA_INDEX);
+    io_wait();
+
+    return reg;
+}
+
+void VGA_SetIndexReg(u8_t val)
+{
+    inb(0x3DA); // set index/data port to index mode
+    io_wait();
+
+    outb(VGA_INDEX, val);
+    io_wait();
+}
+
+void VGA_
