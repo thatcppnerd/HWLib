@@ -146,14 +146,14 @@ u8_t VGA_GetSequencerAddressReg(void);
 void VGA_SetSequencerAddressReg(u8_t val);
 
 u8_t VGA_GetDACMaskReg(void);
-void VGA_SetDACMaskReg(u8_t val);
+void VGA_SetDACMaskReg(u8_t mask);
 
 u8_t VGA_GetDACState(void);
 
-void VGA_SetDACRMAddrReg(u8_t val);
+void VGA_SetDACReadmodeAddrReg(u8_t val);
 
-u8_t VGA_GetDACWMAddrReg(void);
-void VGA_SetDACWMAddrReg(u8_t val);
+u8_t VGA_GetDACWritemodeAddrReg(void);
+void VGA_SetDACWritemodeAddrReg(u8_t val);
 
 u8_t VGA_GetDACDataReg(void);
 void VGA_SetDACDataReg(u8_t val);
