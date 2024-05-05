@@ -91,4 +91,25 @@ void VGA_SetMiscOutputReg(u8_t val)
     io_wait();
 }
 
+u8_t VGA_GetDACMaskReg(void)
+{
+    register u8_t reg = inb(VGA_DAC_MASK);
+    io_wait();
+
+    return reg;
+}
+
+void VGA_SetDACMaskReg(u8_t mask)
+{
+    outb(VGA_DAC_MASK, mask);
+    io_wait();
+}
+
+u8_t VGA_GetDACState(void)
+{
+    register u8_t reg = inb(VGA_DAC_STATE);
+    io_wait();
+
+    return reg;
+}
 
