@@ -14,24 +14,23 @@ enum VGA_CRTC_Ports
 
 enum VGA_EXTRA_REG_Ports
 {
-    VGA_INPUT_STATUS0 =         0x3C2, // Read
+    VGA_INPUT_STATUS0 =             0x3C2, // Read
 
-    VGA_INPUT_STATUS1 =         0x3BA, // Read-only
-    VGA_INPUT_STATUS1_ALT =     0x3DA, // Read-only
+    VGA_INPUT_STATUS1_MONO =        0x3BA, // Read-only
+    VGA_INPUT_STATUS1_COLOR =       0x3DA, // Read-only
 
-    VGA_FEATURE_CTL_WRITE =     0x3BA, // Write-only
-    VGA_FEATURE_CTL_WRITE_ALT = 0x3DA, // Write-only
-    VGA_FEATURE_CTL_READ =      0x3CA, // Read-only
+    VGA_FEATURE_CTL_WRITE_MONO =    0x3BA, // Write-only
+    VGA_FEATURE_CTL_WRITE_COLOR =   0x3DA, // Write-only
+    VGA_FEATURE_CTL_READ =          0x3CA, // Read-only
 
-    VGA_MISC_OUT_WRITE =        0x3C2, // Write-only
-    VGA_MISC_OUT_READ =         0x3CC // Read-only
+    VGA_MISC_OUT_WRITE =            0x3C2, // Write-only
+    VGA_MISC_OUT_READ =             0x3CC  // Read-only
 };
 
 enum VGA_ATTR_Ports
 {
     VGA_ATTR_INDEX =            0x3C0,
-    VGA_ATTR_DATA =             0x3C0,
-
+    VGA_ATTR_DATA_WRITE =       0x3C0,
     VGA_ATTR_DATA_READ =        0x3C1
 };
 
@@ -143,7 +142,19 @@ void VGA_SetCRTCAddrReg(u8_t addr);
 u8_t VGA_GetCRTCDataReg(void);
 void VGA_SetCRTCDataReg(u8_t addr);
 
+
 u8_t VGA_GetInputStatusReg0(void);
+u8_t VGA_GetInputStatusReg1(void);
+
+u8_t VGA_GetFeatureCtlReg(void);
+void VGA_SetFeatureCtlReg(u8_t val);
+
+u8_t VGA_GetMiscOutputReg(void);
+void VGA_SetMiscOutputReg(u8_t val);
+
+
+u8_t VGA_GetAttribCtlIndexReg(void);
+void VGA_SetAttribCtlIndexReg(u8_t val);
 
 void VGA_SetFCReg(u8_t val);
 
@@ -155,9 +166,6 @@ void VGA_SetAttrDataReg(u8_t val);
 
 u8_t VGA_GetAttrDataReadReg(void);
 void VGA_SetAttrDataReadReg(u8_t val);
-
-u8_t VGA_GetMiscOutputReg(void);
-void VGA_SetMiscOutputReg(u8_t val);
 
 u8_t VGA_GetSequencerAddressReg(void);
 void VGA_SetSequencerAddressReg(u8_t val);
@@ -178,7 +186,6 @@ void VGA_SetDACDataReg(u8_t val);
 u8_t VGA_GetGraphicsControlAddressReg(void);
 void VGA_SetGraphicsControlAddressReg(u8_t val);
 u8_t VGA_GetInputStatusReg1(void);
-void VGA_SetFeatureControl(u8_t val);
 
 
 
