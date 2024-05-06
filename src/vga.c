@@ -139,14 +139,21 @@ u8_t VGA_GetAttribCtlDataReg(void)
 {
     VGA_GetInputStatusReg1();
 
-    inb(VGA_ATTR_INDEX);
-    io_wait();
-
     register u8_t reg = inb(VGA_ATTR_DATA_READ);
     io_wait();
 
-    return reg;
-    
+    return reg;   
+}
+
+void VGA_SetAttribCtlDataReg(u8_t val)
+{
+    VGA_GetInputStatusReg1();
+
+    inb(VGA_ATTR_INDEX);
+    io_wait();
+
+    outb(VGA_ATTR_DATA_WRITE, val);
+    io_wait();
 }
 
 u8_t VGA_GetAttribCtlReg(u8_t index)
@@ -164,7 +171,9 @@ u8_t VGA_GetAttribCtlReg(u8_t index)
 
 void VGA_SetAttribCtlReg(u8_t index, u8_t val)
 {
+    VGA_GetInputStatusReg1();
 
+    out
 }
 
 
