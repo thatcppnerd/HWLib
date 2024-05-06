@@ -3,47 +3,61 @@
 
 #include "types.h"
 
-enum VGA_Ports
-{   
-    VGA_CRTC_ADDR =             0x3B4,
-    VGA_CRTC_DATA =             0x3B5,
+enum VGA_CRTC_Ports
+{
+    VGA_CRTC_ADDR_MONO =        0x3B4,
+    VGA_CRTC_ADDR_COLOR =       0x3D4,
 
-    VGA_IN_STAT1_ALT =          0x3BA, // Read
-    VGA_FC_ALT1 =               0x3BA, // Write
+    VGA_CRTC_DATA_MONO =        0x3B5,
+    VGA_CRTC_DATA_COLOR =       0x3D5
+};
 
+enum VGA_EXTRA_REG_Ports
+{
+    VGA_INPUT_STATUS0 =         0x3C2, // Read
+
+    VGA_INPUT_STATUS1 =         0x3BA, // Read-only
+    VGA_INPUT_STATUS1_ALT =     0x3DA, // Read-only
+
+    VGA_FEATURE_CTL_WRITE =     0x3BA, // Write-only
+    VGA_FEATURE_CTL_WRITE_ALT = 0x3DA, // Write-only
+    VGA_FEATURE_CTL_READ =      0x3CA, // Read-only
+
+    VGA_MISC_OUT_WRITE =        0x3C2, // Write-only
+    VGA_MISC_OUT_READ =         0x3CC // Read-only
+};
+
+enum VGA_ATTR_Ports
+{
     VGA_ATTR_INDEX =            0x3C0,
     VGA_ATTR_DATA =             0x3C0,
 
-    VGA_ATTR_DATA_READ =        0x3C1,
+    VGA_ATTR_DATA_READ =        0x3C1
+};
 
-    VGA_IN_STATUS0 =            0x3C2, // Read
-    VGA_MISC_OUT_WR =           0x3C2, // Write
-
+enum VGA_SEQ_Ports
+{
     VGA_SEQ_ADDR =              0x3C4,
-    VGA_SEQ_DATA =              0x3C5,
+    VGA_SEQ_DATA =              0x3C5
+};
 
+enum VGA_DAC_Ports
+{
     VGA_DAC_MASK =              0x3C6,
 
-    VGA_DAC_STATE =             0x3C7, // Read
-    VGA_DAC_ADDR_RM =           0x3C7, // Write
+    VGA_DAC_STATE =             0x3C7, // Read-only
+    VGA_DAC_ADDR_READMODE =     0x3C7, // Write-only
+    VGA_DAC_ADDR_WRITEMODE =    0x3C8,
 
-    VGA_DAC_ADDR_WM =           0x3C8,
-
-    VGA_DAC_DATA =              0x3C9,
-
-    VGA_FC_ALT2 =               0x3CA, // Read
-
-    VGA_MISC_OUT_RD =           0x3CC, // Read
-
-    VGA_GC_ADDR =               0x3CE,
-    VGA_GC_DATA =               0x3CF,
-
-    VGA_CRTC_ADDR_ALT =         0x3D4,
-    VGA_CRTC_DATA_ALT =         0x3D5,
-
-    VGA_IN_STATUS1 =            0x3DA, // Read
-    VGA_FC =                    0x3DA // Write
+    VGA_DAC_DATA =              0x3C9
 };
+
+enum VGA_GRCTL_Ports
+{
+    VGA_GRCTL_ADDR =     0x3CE,
+    VGA_GRCTL_DATA =     0x3CF
+};
+
 
 enum VGA_GC_RegIndices
 {
@@ -125,6 +139,9 @@ enum VGA_CRTC_RegIndices
 
 u8_t VGA_GetCRTCAddrReg(void);
 void VGA_SetCRTCAddrReg(u8_t addr);
+
+u8_t VGA_GetCRTCDataReg(void);
+void VGA_SetCRTCDataReg(u8_t addr);
 
 u8_t VGA_GetInputStatusReg0(void);
 
