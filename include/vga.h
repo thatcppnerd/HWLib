@@ -156,16 +156,14 @@ void VGA_SetMiscOutputReg(u8_t val);
 u8_t VGA_GetAttribCtlIndexReg(void);
 void VGA_SetAttribCtlIndexReg(u8_t val);
 
+u8_t VGA_GetAttribCtlDataReg(void);
+void VGA_SetAttribCtlDataReg(u8_t val);
+
+u8_t VGA_GetAttribCtlReg(u8_t index);
+void VGA_SetAttribCtlReg(u8_t index, u8_t val);
+
+
 void VGA_SetFCReg(u8_t val);
-
-u8_t VGA_GetAttrIndexReg(void);
-void VGA_SetAttrIndexReg(u8_t val);
-
-u8_t VGA_GetAttrDataReg(void);
-void VGA_SetAttrDataReg(u8_t val);
-
-u8_t VGA_GetAttrDataReadReg(void);
-void VGA_SetAttrDataReadReg(u8_t val);
 
 u8_t VGA_GetSequencerAddressReg(void);
 void VGA_SetSequencerAddressReg(u8_t val);
