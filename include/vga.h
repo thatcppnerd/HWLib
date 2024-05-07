@@ -45,8 +45,8 @@ enum VGA_DAC_Ports
     VGA_DAC_MASK =              0x3C6,
 
     VGA_DAC_STATE =             0x3C7, // Read-only
-    VGA_DAC_ADDR_READMODE =     0x3C7, // Write-only
-    VGA_DAC_ADDR_WRITEMODE =    0x3C8,
+    VGA_DAC_ADDR_READ =         0x3C7, // Write-only
+    VGA_DAC_ADDR_WRITE =        0x3C8,
 
     VGA_DAC_DATA =              0x3C9
 };
@@ -163,35 +163,29 @@ u8_t VGA_GetAttribCtlReg(u8_t index);
 void VGA_SetAttribCtlReg(u8_t index, u8_t val);
 
 
-u8_t VGA_GetSequencerAddressReg(void);
-void VGA_SetSequencerAddressReg(u8_t val);
+u8_t VGA_GetSequencerAddrReg(void);
+void VGA_SetSequencerAddrReg(u8_t val);
 
 u8_t VGA_GetSequencerDataReg(void);
 void VGA_GetSequencerDataReg(u8_t val);
 
-u8_t VGA_GetDACMaskReg(void);
-void VGA_SetDACMaskReg(u8_t mask);
 
 u8_t VGA_GetDACState(void);
+void VGA_SetDACState(u8_t val)
 
-void VGA_SetDACReadmodeAddrReg(u8_t val);
+u8_t VGA_GetDACMaskReg(void);
 
-u8_t VGA_GetDACWritemodeAddrReg(void);
-void VGA_SetDACWritemodeAddrReg(u8_t val);
+u8_t VGA_GetDACAddrReg(void);
+void VGA_SetDACAddrReg(u8_t val);
 
 u8_t VGA_GetDACDataReg(void);
 void VGA_SetDACDataReg(u8_t val);
 
-u8_t VGA_GetGraphicsControlAddressReg(void);
-void VGA_SetGraphicsControlAddressReg(u8_t val);
-u8_t VGA_GetInputStatusReg1(void);
 
+u8_t VGA_GetGraphicsCtlAddrReg(void);
+void VGA_SetGraphicsCtlAddrReg(u8_t val);
 
-
-
-
-u8_t VGA_ReadRegister(u8_t index);
-void VGA_WriteRegister(u8_t index, u8_t val);
-
+u8_t VGA_GetGraphicsCtlDataReg(void);
+void VGA_SetGraphicsCtlDataReg(u8_t val);
 
 #endif
