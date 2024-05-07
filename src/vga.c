@@ -116,18 +116,68 @@ u8_t VGA_GetMiscOutputReg(void)
     return reg;
 }
 
-void VGA_SetMiscOutputReg(u8_t val)
-{
-    outb(VGA_MISC_OUT_READ, val);
-    io_wait();
-}
-
 
 u8_t VGA_GetAttribCtlIndexReg(void)
 {
-    VGA_GetInputStatusReg1(); // reset flip-flop to index mode
+    VGA_GetInputStatusReg1(); // reset flip-flop
 
     register u8_t reg = inb(VGA_ATTR_INDEX);
-    
+    io_wait();
+
+    return reg;
 }
+
+void VGA_SetAttribCtlIndexReg(u8_t val)
+{
+    VGA_GetInputStatusReg1();
+
+    outb(VGA_ATTR_INDEX, val);
+    io_wait();
+}
+
+u8_t VGA_GetAttribCtlDataReg(void)
+{
+    VGA_GetInputStatusReg1();
+
+    register u8_t reg = inb(VGA_ATTR_DATA_READ);
+    io_wait();
+
+    return reg;   
+}
+
+void VGA_SetAttribCtlDataReg(u8_t val)
+{
+    VGA_GetInputStatusReg1();
+
+    inb(VGA_ATTR_INDEX);
+    io_wait();
+
+    outb(VGA_ATTR_DATA_WRITE, val);
+    io_wait();
+}
+
+u8_t VGA_GetAttribCtlReg(u8_t index)
+{
+    VGA_GetInputStatusReg1(); // reset flip-flop to index mode
+    
+    outb(VGA_ATTR_INDEX, index);
+    io_wait();
+
+    register u8_t reg = inb(VGA_ATTR_DATA_READ);
+    io_wait();
+
+    return reg;
+}
+
+void VGA_SetAttribCtlReg(u8_t index, u8_t val)
+{
+    VGA_GetInputStatusReg1();
+
+    outb(VGA_ATTR_INDEX, index);
+    io_wait();
+
+    outb(VGA_ATTR_DATA_WRITE, val);
+    io_wait();
+}
+
 
