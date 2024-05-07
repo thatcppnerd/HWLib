@@ -149,10 +149,11 @@ void VGA_SetAttribCtlDataReg(u8_t val)
 {
     VGA_GetInputStatusReg1();
 
-    inb(VGA_ATTR_INDEX);
+    outb(VGA_ATTR_INDEX, inb(VGA_ATTR_INDEX)); // switch to data mode 
     io_wait();
 
-    outb(VGA_ATTR_DATA_WRITE, val);
+    outb(VGA_ATTR_DATA_WRITE, val); // write data
+     
     io_wait();
 }
 

@@ -163,10 +163,11 @@ u8_t VGA_GetAttribCtlReg(u8_t index);
 void VGA_SetAttribCtlReg(u8_t index, u8_t val);
 
 
-void VGA_SetFCReg(u8_t val);
-
 u8_t VGA_GetSequencerAddressReg(void);
 void VGA_SetSequencerAddressReg(u8_t val);
+
+u8_t VGA_GetSequencerDataReg(void);
+void VGA_GetSequencerDataReg(u8_t val);
 
 u8_t VGA_GetDACMaskReg(void);
 void VGA_SetDACMaskReg(u8_t mask);
