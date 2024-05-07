@@ -149,10 +149,11 @@ void VGA_SetAttribCtlDataReg(u8_t val)
 {
     VGA_GetInputStatusReg1();
 
-    inb(VGA_ATTR_INDEX);
+    outb(VGA_ATTR_INDEX, inb(VGA_ATTR_INDEX)); // switch to data mode 
     io_wait();
 
-    outb(VGA_ATTR_DATA_WRITE, val);
+    outb(VGA_ATTR_DATA_WRITE, val); // write data
+     
     io_wait();
 }
 
@@ -179,5 +180,117 @@ void VGA_SetAttribCtlReg(u8_t index, u8_t val)
     outb(VGA_ATTR_DATA_WRITE, val);
     io_wait();
 }
+
+
+u8_t VGA_GetSequencerAddrReg(void)
+{
+    register u8_t reg = inb(VGA_SEQ_ADDR);
+    io_wait();
+
+    return reg;
+}
+
+void VGA_SetSequencerAddrReg(u8_t val)
+{
+    outb(VGA_SEQ_ADDR, val);
+    io_wait();
+}
+
+u8_t VGA_GetSequencerDataReg(void)
+{
+    register u8_t reg = inb(VGA_SEQ_DATA);
+    io_wait();
+
+    return reg;
+}
+
+void VGA_SetSequencerDataReg(u8_t reg)
+{
+    outb(VGA_SEQ_DATA, reg);
+    io_wait();
+}
+
+
+u8_t VGA_GetDACState(void)
+{
+    register u8_t reg = inb(VGA_DAC_STATE);
+    io_wait();
+
+    return reg;
+}
+
+void VGA_SetDACState(u8_t val)
+{
+    outb(VGA_DAC_STATE, val);
+    io_wait();
+}
+
+u8_t VGA_GetDACMaskReg(void)
+{
+    register u8_t reg = inb(VGA_DAC_STATE);
+    io_wait();
+
+    return reg;
+}
+
+u8_t VGA_GetDACAddrReg(void)
+{
+    register u8_t reg = inb(VGA_DAC_ADDR_READ);
+    io_wait();
+
+    return reg;
+}
+
+void VGA_SetDACAddrReg(u8_t val)
+{
+    outb(VGA_DAC_ADDR_WRITE, val);
+    io_wait();
+}
+
+u8_t VGA_GetDACDataReg(void)
+{
+    register u8_t reg = inb(VGA_DAC_DATA);
+    io_wait();
+
+    return reg;
+}
+
+void VGA_SetDACDataReg(u8_t val)
+{
+    outb(VGA_DAC_DATA, val);
+    io_wait();
+}
+
+
+u8_t VGA_GetGraphicsCtlAddrReg(void)
+{
+    register u8_t reg = inb(VGA_GRCTL_ADDR);
+    io_wait();
+
+    return reg;
+}
+
+void VGA_SetGraphicsCtlAddrReg(u8_t val)
+{
+    outb(VGA_GRCTL_ADDR, val);
+    io_wait();
+}
+
+u8_t VGA_GetGraphicsDataReg(void)
+{
+    register u8_t reg = inb(VGA_GRCTL_DATA);
+    io_wait();
+
+    return reg;
+}
+
+void VGA_SetGraphicsDataReg(u8_t val)
+{
+    outb(VGA_GRCTL_DATA, val);
+    io_wait();
+}
+
+
+
 
 
