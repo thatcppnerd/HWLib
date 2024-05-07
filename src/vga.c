@@ -173,7 +173,11 @@ void VGA_SetAttribCtlReg(u8_t index, u8_t val)
 {
     VGA_GetInputStatusReg1();
 
-    out
+    outb(VGA_ATTR_INDEX, index);
+    io_wait();
+
+    outb(VGA_ATTR_DATA_WRITE, val);
+    io_wait();
 }
 
 
