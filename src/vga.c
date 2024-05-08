@@ -276,7 +276,7 @@ void VGA_SetGraphicsCtlAddrReg(u8_t val)
     io_wait();
 }
 
-u8_t VGA_GetGraphicsDataReg(void)
+u8_t VGA_GetGraphicsCtlDataReg(void)
 {
     register u8_t reg = inb(VGA_GRCTL_DATA);
     io_wait();
@@ -284,7 +284,7 @@ u8_t VGA_GetGraphicsDataReg(void)
     return reg;
 }
 
-void VGA_SetGraphicsDataReg(u8_t val)
+void VGA_SetGraphicsCtlDataReg(u8_t val)
 {
     outb(VGA_GRCTL_DATA, val);
     io_wait();
