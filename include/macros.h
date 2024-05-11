@@ -1,5 +1,5 @@
-#ifndef __UTIL_H__
-#define __UTIL_H__
+#ifndef __MACROS_H__
+#define __MACROS_H__
 
 #include "asm.h"
 
