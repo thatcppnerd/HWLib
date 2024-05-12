@@ -15,5 +15,4 @@ void PCSPKR_SetFreq(unsigned int freq)
     u16_t count = PIT_GetFrequencyCount(freq);
 
     PIT_SetReloadValue(PIT_CH2, count);
-
 }
