@@ -3,7 +3,7 @@
 
 #include "../types.h"
 
-enum PCI_CFGCommon_Offsets
+enum PCI_CFG_Common_Offsets
 {
     PCI_CFG_DEVICE_ID =         0x00,
     PCI_CFG_VENDOR_ID =         0x02,
@@ -43,18 +43,18 @@ enum PCI_CFG1_Offsets
     PCI_CFG1_BAR0 =                         0x10,
     PCI_CFG1_BAR1 =                         0x14,
     PCI_CFG1_SECONDARY_LATENCY_TIMER =      0x18,
-    PCI_CFG1_SUBORDINATE_BUS_NUMBER =       0x19,
-    PCI_CFG1_SECONDARY_BUS_NUMBER =         0x1A,
-    PCI_CFG1_PRIMARY_BUS_NUMBER =           0x1B,
+    PCI_CFG1_SUBORDINATE_BUS_NUM =          0x19,
+    PCI_CFG1_SECONDARY_BUS_NUM =            0x1A,
+    PCI_CFG1_PRIMARY_BUS_NUM =              0x1B,
     PCI_CFG1_SECONDARY_STATUS =             0x1C,
     PCI_CFG1_IO_LIMIT =                     0x1E,
     PCI_CFG1_IO_BASE =                      0x1F,
     PCI_CFG1_MEM_LIMIT =                    0x20,
     PCI_CFG1_MEM_BASE =                     0x22,
-    PCI_CFG1_PREFETCHABLE_MEM_LIMIT =       0x24,
-    PCI_CFG1_PREFETCHABLE_MEM_BASE =        0x26,
-    PCI_CFG1_PREFETCHABLE_BASE_HI =         0x28,
-    PCI_CFG1_PREFETCHABLE_LIMIT_HI =        0x2C,
+    PCI_CFG1_PREFETCH_MEM_LIMIT =           0x24,
+    PCI_CFG1_PREFETCH_MEM_BASE =            0x26,
+    PCI_CFG1_PREFETCH_BASE_HI =             0x28,
+    PCI_CFG1_PREFETCH_LIMIT_HI =            0x2C,
     PCI_CFG1_IO_LIMIT_HI =                  0x30,
     PCI_CFG1_IO_BASE_HI =                   0x32,
     PCI_CFG1_CAPABILITY_PTR =               0x37,
@@ -62,6 +62,31 @@ enum PCI_CFG1_Offsets
     PCI_CFG1_BRIDGE_CTL =                   0x3C,
     PCI_CFG1_INT_PIN =                      0x3E,
     PCI_CFG1_INT_LINE =                     0x3F
+};
+
+enum PCI_CFG2_Offsets
+{
+    PCI_CFG2_CARDBUS_SOCK_BASE_ADDR =           0x10,
+    PCI_CFG2_SECONDARY_STATUS =                 0x14,
+    PCI_CFG2_CAPABILITIES_LIST_OFFSET =         0x17,
+    PCI_CFG2_CARDBUS_LATENCY_TIMER =            0x18,
+    PCI_CFG2_SUBORDINATE_BUS_NUM =              0x19,
+    PCI_CFG2_CARDBUS_BUS_NUM =                  0x1A,
+    PCI_CFG2_PCI_BUS_NUM =                      0x1B,
+    PCI_CFG2_MEM_BASE_ADDR0 =                   0x1C,
+    PCI_CFG2_MEM_LIMIT0 =                       0x20,
+    PCI_CFG2_MEM_BASE_ADDR1 =                   0x24,
+    PCI_CFG2_MEM_LIMIT1 =                       0x28,
+    PCI_CFG2_IO_BASE_ADDR0 =                    0x2C,
+    PCI_CFG2_IO_LIMIT0 =                        0x30,
+    PCI_CFG2_IO_BASE_ADDR1 =                    0x34,
+    PCI_CFG2_IO_LIMIT1 =                        0x38,
+    PCI_CFG2_BRIDGE_CTL =                       0x3C,
+    PCI_CFG2_INT_PIN =                          0x3E,
+    PCI_CFG2_INT_LINE =                         0x3F,
+    PCI_CFG2_SUBSYSTEM_VENDOR_ID =              0x40,
+    PCI_CFG2_SUBSYSTEM_DEVICE_ID =              0x42,
+    PCI_CFG2_PC_CARD_LEGACY_MODE_BASE_ADDR =    0x44
 };
 
 typedef struct PCI_CommandReg
