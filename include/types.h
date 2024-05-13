@@ -21,6 +21,7 @@ typedef unsigned char       uchar_t;
 typedef unsigned short      ushort_t;
 typedef unsigned int        uint_t;
 
+
 #ifdef __x86_64__
 typedef signed long         i64_t;
 typedef unsigned long       u64_t;
@@ -32,6 +33,13 @@ typedef unsigned long       ulong_t;
 // Disk I/O Types
 
 typedef u32_t LBA_t; 
+
+typedef struct CHS
+{
+    u16_t   cylinder, 
+            head, 
+            sector;
+} CHS_t;
 
 // Function Attributes 
 
