@@ -5,6 +5,15 @@
 
 #include "defs.h"
 
+u8_t PATA_current_bus = 0;
+u8_t PATA_current_drive = 0;
+
+int PATA_SendCommand(u8_t bus, u8_t drive, u8_t cmd);
+
+int PATA_GetErrorReg();
+
+int PATA_FlushCashe();
+
 
 int PATA_ReadSectorPIO(u8_t bus, u8_t drive, LBA_t lba, void* dest);
 int PATA_ReadSectorDMA(u8_t bus, u8_t drive, LBA_t lba, void* dest);
