@@ -5,27 +5,21 @@
 
 #include "defs.h"
 
-u8_t PATA_current_bus = 0;
-u8_t PATA_current_drive = 0;
 
-int PATA_SendCommand(u8_t bus, u8_t drive, u8_t cmd);
+void PATA_400ns(int bus);
 
-int PATA_GetErrorReg();
+ATA_Error_t     PATA_GetError(int bus);
+ATA_Status_t    PATA_GetStatus(int bus);
 
-int PATA_FlushCashe();
+void    PATA_Nop(int bus);
+void    PATA_CasheFlush(int bus);
+void    PATA_SoftwareReset(int bus);
+void    PATA_Identify(int bus, int drive);
 
-
-int PATA_ReadSectorPIO(u8_t bus, u8_t drive, LBA_t lba, void* dest);
-int PATA_ReadSectorDMA(u8_t bus, u8_t drive, LBA_t lba, void* dest);
-
-int PATA_WriteSectorPIO(u8_t bus, u8_t drive, LBA_t lba, void* src);
-int PATA_WriteSectorDMA(u8_t bus, u8_t drive, LBA_t lba, void* src);
-
-int PATA_ReadSectorsPIO(u8_t bus, u8_t drive, LBA_t lba, void* dest, u8_t count);
-int PATA_ReadSectorsDMA(u8_t bus, u8_t drive, LBA_t lba, void* dest, u8_t count);
-
-int PATA_WriteSectorsPIO(u8_t bus, u8_t drive, LBA_t lba, void* src, u8_t count);
-int PATA_WriteSectorsDMA(u8_t bus, u8_t drive, LBA_t lba, void* src, u8_t count);
+int     PATA_ReadSectorsPIO(int bus, int drive, LBA_t lba, u8_t count, void* dest);
+int     PATA_ReadSectorsDMA(int bus, int drive, LBA_t lba, u8_t count, void* dest);
+int     PATA_WriteSectorsPIO(int bus, int drive, LBA_t lba, u8_t count, void* src);
+int     PATA_WriteSectorsDMA(int bus, int drive, LBA_t lba, u8_t count, void* src);
 
 
 
