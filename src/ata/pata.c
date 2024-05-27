@@ -71,11 +71,13 @@ void PATA_SoftwareReset(int bus)
 	ATA_400ns();
 	ATA_400ns();
 	ATA_400ns();
+
 	ATA_400ns();
 	ATA_400ns();
 	ATA_400ns();
 	ATA_400ns();
 	ATA_400ns();
+    
 	ATA_400ns();
 	ATA_400ns();
 	ATA_400ns();
@@ -101,7 +103,7 @@ int PATA_ReadSectorsPIO(int bus, int drive, LBA_t lba, u8_t count, void* dest)
     outb(io_base + ATA_REG_LBA_MID, (lba >> 8) & 0xFF);
     outb(io_base + ATA_REG_LBA_HI, (lba >> 16) & 0xFF);
     
-    outb(io_base + ATA_REG_DRIVE_HEAD, 0xE0 | (drive != ATA_MASTER) ? 0x8 : 0x0 | (lba >> 24) & 0x0F);
+    outb(io_base + ATA_REG_DRIVE_HEAD, 0xE0 | (drive != ATA_MASTER) ? 0x10 : 0x0 | (lba >> 24) & 0x0F);
 
     outb(io_base + ATA_REG_COMMAND, ATA_READ_PIO);
     ATA_400ns();
