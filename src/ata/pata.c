@@ -108,8 +108,6 @@ int PATA_ReadSectorsPIO(int bus, int drive, LBA_t lba, u8_t count, void* dest)
     outb(io_base + ATA_REG_COMMAND, ATA_READ_PIO);
     ATA_400ns();
 
-
-
     u16_t timeout = 0;
 
     while(!PATA_GetStatus(bus).bsy) // wait for drive to respond with data
