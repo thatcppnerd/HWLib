@@ -31,12 +31,17 @@ u8_t VGA_M3_GetCharColor(int x, int y)
     return VGA_M3_FB[(y * VGA_M3_COLS) + x].color;
 }
 
-void VGA_M3_Print(int x, int y, char* str, u8_t color)
+void VGA_M3_Print(int x, int y, const char* str, u8_t color)
 {
-    for(int c = 0 ; str[c] != 0 ; c++)
+    int c = 0;
+    while(1)
     {
         VGA_M3_SetChar(x, y, (struct VGA_M3_Char){str[c], color});
+        c++, x++;
+        if(str[c] == '\0') break;
     }
+
+    return;
 }
 
 void VGA_M3_ClearScreen(u8_t color)

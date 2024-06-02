@@ -6,7 +6,7 @@
 #define VGA_M3_ROWS (25)
 #define VGA_M3_COLS (80)
 
-#define VGA_M3_FB   ((struct VGA_M3_Char*)0xB8000)
+#define VGA_M3_FB   ((volatile struct VGA_M3_Char*)0xB8000)
 
 #define VGA_M3_ColorByte(bg, fg) ((bg << 4) | fg)
 
@@ -45,7 +45,7 @@ char VGA_M3_GetCharVal(int x, int y);
 void VGA_M3_SetCharColor(int x, int y, u8_t color);
 u8_t VGA_M3_GetCharColor(int x, int y);
 
-void VGA_M3_Print(int x, int y, char* str, u8_t color);
+void VGA_M3_Print(int x, int y, const char* str, u8_t color);
 
 void VGA_M3_ClearScreen(u8_t color);
 
