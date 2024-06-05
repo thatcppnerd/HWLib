@@ -5,13 +5,24 @@
 #include "macros.h"
 
 
+
+
+typedef u PACKED IDT_Attr
+{
+    u8_t 
+        gate_type : 4,
+        : 1,
+        dpl : 2,
+        p : 1;
+} IDT_Attr_t;
+
 typedef struct PACKED IDT_GateDesc
 {
-    u16_t   off_lo;
-    u16_t   seg_select;
-    u8_t    resv;
-    u8_t    attr;
-    u16_t   off_hi;
+    u16_t       off_lo;
+    u16_t       seg_select;
+    u8_t        resv;
+    IDT_Attr_t  attr;
+    u16_t       off_hi;
 } IDT_GateDesc_t;
 
 typedef struct PACKED IDTR
@@ -20,7 +31,7 @@ typedef struct PACKED IDTR
     u32_t offset;
 } IDTR_t;
 
-enum idt_gatetype
+enum IDT_Gatetype
 {
     IDT_GATETYPE_TASK   = 0b0101,
     IDT_GATETYPE_INT16  = 0b0110,
@@ -28,6 +39,16 @@ enum idt_gatetype
     IDT_GATETYPE_INT32  = 0b1110,
     IDT_GATETYPE_TRAP32 = 0b1111
 };
+
+enum IDT_DPL
+{
+    IDT_DPL0    = 0,
+    IDT_DPL1    = 1,
+    IDT_DPL2    = 2,
+    IDT_DPL3    = 3
+};
+
+
 
 
 typedef IDT_GateDesc_t* IDT_t;
