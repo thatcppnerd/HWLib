@@ -20,6 +20,6 @@ int ATA_GetBase(int bus, int base)
         case 3:
             return (base > 0) ? ATA_BUS3_IO_BASE : ATA_BUS3_CTL_BASE;
         break;
-
     }
+    return 0;
 }

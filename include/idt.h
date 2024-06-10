@@ -7,19 +7,20 @@
 
 
 
-typedef u PACKED IDT_Attr
+typedef union PACKED IDT_Attr
 {
     u8_t 
         gate_type : 4,
         : 1,
         dpl : 2,
         p : 1;
+    u8_t byte;
 } IDT_Attr_t;
 
 typedef struct PACKED IDT_GateDesc
 {
     u16_t       off_lo;
-    u16_t       seg_select;
+    u16_t       seg;
     u8_t        resv;
     IDT_Attr_t  attr;
     u16_t       off_hi;
@@ -53,11 +54,9 @@ enum IDT_DPL
 
 typedef IDT_GateDesc_t* IDT_t;
 
-void IDT_LoadReg(IDTR_t idtr);
-void IDT_StoreReg(IDTR_t* idtr);
+void IDT_LoadIDTR(IDTR_t idtr);
+void IDT_StoreIDTR(IDTR_t* idtr);
 
-void IDT_SetVector(IDT_t, u8_t vector, u8_t attr, void* func);
-
-
+void IDT_SetVector(IDT_t idt, u8_t vec, u16_t seg, IDT_Attr_t attr, void* func);
 
 #endif
